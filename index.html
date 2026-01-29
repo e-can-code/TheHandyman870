@@ -5,11 +5,6 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="styles.css">
-<script>
-function unveil(){
-	document.getElementById(" 
-}
-</script>
 <style>
 .container{
 	display:grid;
@@ -35,10 +30,29 @@ function unveil(){
 </div>
 
 <!-- Contact information -->
+<script>
+function unveilPhone(){
+	var elem = document.getElementById("phone");
+	if (elem.style.display === "none"){
+	elem.style.display = "block";
+	} else {
+		elem.style.display = "none";
+	}
+}
+function unveilEmail(){
+	var elem = document.getElementById("email");
+	if (elem.style.display === "none"){
+	elem.style.display = "block";
+	} else {
+		elem.style.display = "none";
+	}
+}
+</script>
+
 <div class="contact">
-<button id="show-number" onclick="unveil()">Call or text The Handyman</button>
+<button onclick="unveilPhone()">Call or text The Handyman</button>
 <div id="phone"> ###-#### </div>
-<button id="show-email" onclick="unveil()">Message us</button>
+<button onclick="unveilEmail()">Message us</button>
 <div id="email"> Email box here - don't forget to leave us your contact information! </div>
 </div>
 </div>
