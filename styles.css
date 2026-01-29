@@ -5,6 +5,11 @@ body{
 	padding: 25px 100px 75px;
 }
 
+/* Add this new rule: */
+h2, .phone, .email {
+    color: inherit;
+}
+
 img{
 	width: 700px;
 }
