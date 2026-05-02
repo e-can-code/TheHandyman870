@@ -15,30 +15,36 @@
     <style>
         html { scroll-behavior: smooth; }
 
-        /* CSS Variables for Light and Dark Modes */
+        /* Modern, High-Trust Color Variables */
         :root {
-            --bg-color: #ffffff;
-            --text-color: #4a86e8;
-            --sub-text: #8ab4f8;
-            --btn-bg: #cce5ff;
-            --btn-border: #4a86e8;
-            --content-bg: #f8f9fa;
+            --bg-color: #f4f6f8;       /* Soft off-white background */
+            --content-bg: #ffffff;     /* Pure white for cards/sections */
+            --text-color: #334155;     /* Dark slate for high readability */
+            --sub-text: #64748b;       /* Lighter slate for secondary text */
+            --primary-blue: #2563eb;   /* Deep, trustworthy professional blue */
+            --primary-hover: #1d4ed8;  /* Slightly darker blue for hovering */
+            --btn-text: #ffffff;       /* White text for buttons */
+            --border-color: #e2e8f0;   /* Very faint gray for subtle dividing lines */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
         [data-theme="dark"] {
-            --bg-color: #000000;
-            --text-color: #d3d3d3;
-            --sub-text: #a9a9a9;
-            --btn-bg: #404040;
-            --btn-border: #808080;
-            --content-bg: #222222;
+            --bg-color: #0f172a;       /* Deep slate instead of harsh pure black */
+            --content-bg: #1e293b;     /* Slightly lighter slate for cards */
+            --text-color: #f8fafc;     /* Off-white text to prevent eye strain */
+            --sub-text: #94a3b8;       
+            --primary-blue: #3b82f6;   /* Brighter blue to pop against dark mode */
+            --primary-hover: #60a5fa;  
+            --btn-text: #ffffff;       
+            --border-color: #334155;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
         }
 
-        /* Global Styles */
+        /* Global Styles with System Fonts */
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: Arial, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
             transition: background-color 0.3s, color 0.3s;
@@ -48,52 +54,62 @@
             min-height: 100vh;
         }
 
-        /* Top Bar for Theme Toggle */
+        /* Top Bar */
         .top-bar {
             width: 100%;
             display: flex;
-            justify-content: flex-end;
+            justify-content: flex-end; /* Change to space-between for about.html */
             padding: 20px;
             box-sizing: border-box;
         }
 
-        .theme-toggle {
-            background: transparent;
-            border: 2px solid var(--btn-border);
+        .theme-toggle, .back-btn {
+            background: var(--content-bg);
+            border: 1px solid var(--border-color);
             color: var(--text-color);
-            font-size: 24px;
-            padding: 5px 10px;
+            font-size: 20px;
+            padding: 8px 16px;
             cursor: pointer;
-            display: flex;
+            border-radius: 50px; /* Pill shape */
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            display: inline-flex;
             align-items: center;
-            gap: 10px;
+        }
+
+        .theme-toggle:hover, .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.15);
         }
 
         /* Main Content Container */
         .container {
             text-align: center;
-            margin-top: 50px;
+            margin-top: 30px;
             max-width: 800px;
             width: 100%;
             padding: 0 20px;
         }
 
         h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 5px;
+            letter-spacing: -0.5px; /* Tighter letter spacing looks more modern */
         }
 
         h2 {
-            font-size: 28px;
-            color: var(--sub-text);
+            font-size: 24px;
+            color: var(--primary-blue); /* Highlighting the phone number */
             margin-top: 0;
             margin-bottom: 10px;
         }
 
         h3 {
-            font-size: 24px;
+            font-size: 20px;
             color: var(--sub-text);
-            font-weight: normal;
+            font-weight: 400;
             margin-bottom: 40px;
         }
 
@@ -101,20 +117,23 @@
         .buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
             margin-bottom: 40px;
         }
 
+        /* Modernized Buttons */
         .action-btn {
-            background-color: var(--btn-bg);
-            border: 2px solid var(--btn-border);
-            color: var(--text-color);
-            padding: 20px 40px;
-            font-size: 20px;
+            background-color: var(--primary-blue);
+            border: none;
+            color: var(--btn-text);
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
             cursor: pointer;
-            border-radius: 4px;
-            transition: opacity 0.2s;
+            border-radius: 8px; /* Softer corners */
+            box-shadow: var(--shadow);
+            transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -122,26 +141,27 @@
         }
 
         .action-btn:hover {
-            opacity: 0.8;
+            background-color: var(--primary-hover);
+            transform: translateY(-2px); /* Slight "lift" effect */
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3); /* Blue tinted shadow */
         }
 
-        /* Reveal Sections */
+        /* Reveal & Permanent Sections (Card Styling) */
+        .reveal-section, .permanent-section, .team-card {
+            background-color: var(--content-bg);
+            border: 1px solid var(--border-color);
+            padding: 40px 30px;
+            border-radius: 16px; /* Smooth, modern corners */
+            margin-bottom: 40px;
+            box-shadow: var(--shadow); /* App-like depth */
+        }
+
         .reveal-section {
             display: none;
-            background-color: var(--content-bg);
-            border: 1px solid var(--btn-border);
-            padding: 30px;
-            border-radius: 8px;
-            margin-bottom: 40px;
-            animation: fadeIn 0.3s;
+            animation: fadeIn 0.4s ease-out;
         }
 
-        /* Permanent Section (Service Area) */
         .permanent-section {
-            background-color: var(--content-bg);
-            border: 1px solid var(--btn-border);
-            padding: 30px;
-            border-radius: 8px;
             margin-top: 20px;
             margin-bottom: 60px;
             width: 100%;
@@ -153,35 +173,91 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Specific Content Styles */
         .phone-display {
-            font-size: 32px;
-            font-weight: bold;
-            letter-spacing: 2px;
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary-blue);
+            letter-spacing: 1px;
         }
 
+        /* Modern Form Inputs */
         .contact-form {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
             max-width: 400px;
             margin: 0 auto;
         }
 
         .contact-form input, .contact-form textarea {
-            padding: 10px;
+            padding: 14px;
             font-size: 16px;
-            border: 1px solid var(--btn-border);
-            border-radius: 4px;
+            font-family: inherit;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
             background-color: var(--bg-color);
             color: var(--text-color);
+            transition: border-color 0.2s, outline 0.2s;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); /* Focus ring */
         }
 
         .map-img {
             max-width: 100%;
             height: auto;
-            border: 1px solid var(--btn-border);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
         }
 
+        /* About Page Extras */
+        .about-text {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 50px;
+            color: var(--text-color);
+        }
+
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .image-placeholder {
+            width: 150px;
+            height: 150px;
+            background-color: var(--bg-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--sub-text);
+            font-weight: 600;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 2px dashed var(--border-color);
+        }
+
+        .team-card h4 {
+            margin: 0 0 5px 0;
+            font-size: 22px;
+            color: var(--text-color);
+        }
+
+        .team-card p {
+            margin: 0;
+            color: var(--sub-text);
+            font-size: 16px;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
