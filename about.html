@@ -4,6 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>About The Handyman</title>
+
+    <script>
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+
     <style>
         /* Exact same CSS Variables as index.html */
         :root {
@@ -107,7 +115,6 @@
             align-items: center;
         }
 
-        /* The placeholder box. Later, you'll replace this div with an <img> tag */
         .image-placeholder {
             width: 150px;
             height: 150px;
@@ -181,13 +188,15 @@
     </div>
 
     <script>
-        // Toggle Light/Dark Mode (Same as Home Page)
+        // Updated Toggle: Now saves the preference to localStorage
         function toggleTheme() {
             const body = document.documentElement;
             if (body.getAttribute('data-theme') === 'dark') {
                 body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
             } else {
                 body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
             }
         }
     </script>
