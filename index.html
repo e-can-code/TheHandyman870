@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,6 +71,11 @@
             align-items: center;
             justify-content: center;
             transition: all 0.1s;
+        }
+
+        .nav-item:hover {
+            background: var(--btn-border);
+            color: var(--bg-color);
         }
 
         #theme-icon { font-size: 16px; color: var(--accent-glow); }
@@ -160,7 +164,6 @@
             margin-right: 10px;
         }
 
-        /* FORM GRID FOR NAME FIELD */
         .form-row {
             display: flex;
             gap: 15px;
@@ -181,6 +184,8 @@
         }
 
         .half-input { flex: 1; margin-bottom: 0; }
+
+        .hidden-field { display: none; }
 
         #service-map {
             height: 400px;
@@ -207,7 +212,7 @@
         <div class="buttons">
             <button class="action-btn" onclick="revealContent('phone-content')">Phone</button>
             <button class="action-btn" onclick="revealContent('message-content')">Inquiry</button>
-            <button class="action-btn" onclick="revealContent('service-content')">Service Area</button>
+            <button class="action-btn" onclick="revealContent('service-area')">Service Area</button>
         </div>
 
         <div id="phone-content" class="reveal-section">
@@ -218,18 +223,22 @@
 
         <div id="message-content" class="reveal-section">
             <div class="section-header">Project Inquiry</div>
-            <form action="https://forms.zohopublic.com/canadayechogm1/form/ContactUs/formperma/7hL3TfO67aPB6ft4EoyHJeAAV8vNX---k4weK3H0nWc" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" id="form">
+            <form action="https://formspree.io/f/xaqvnvrq" method="POST">
                 <div class="form-row">
-                    <input class="form-input half-input" name="Name_First" type="text" placeholder="FIRST NAME" required>
-                    <input class="form-input half-input" name="Name_Last" type="text" placeholder="LAST NAME" required>
+                    <input class="form-input half-input" name="First Name" type="text" placeholder="FIRST NAME" required>
+                    <input class="form-input half-input" name="Last Name" type="text" placeholder="LAST NAME" required>
                 </div>
                 <input class="form-input" name="Email" type="email" placeholder="EMAIL" required>
-                <textarea class="form-input" name="Description" rows="5" placeholder="Leave us a few words..."></textarea>
+                
+                <input type="text" name="_gotcha" class="hidden-field">
+
+                <textarea class="form-input" name="Message" rows="5" placeholder="Leave us a few words..."></textarea>
+                
                 <button type="submit" class="action-btn" style="width: 100%; box-shadow: none;">Send Request</button>
             </form>
         </div>
 
-        <div id="service-content" class="reveal-section">
+        <div id="service-area" class="reveal-section">
             <div class="section-header">Service Area</div>
             <span style="font-style: italic; color: var(--sub-text); display: block; margin-bottom: 20px;">From Little Rock to El Dorado; from Dierks to Pine Bluff</span>
             <div id="service-map"></div>
@@ -250,16 +259,24 @@
         }
 
         function initMap() {
-            map = L.map('service-map', { zoomControl: false }).setView([34.2570, -92.4281], 7);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const color = (currentTheme === 'dark') ? '#3d71e9' : '#2b59c3';
-            serviceCircle = L.circle([34.2570, -92.4281], { 
-                color: color, fillColor: color, fillOpacity: 0.2, radius: 112654 
-            }).addTo(map);
+            if (!map) {
+                map = L.map('service-map', { zoomControl: false }).setView([34.2570, -92.4281], 7);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+                updateMapColor();
+            }
         }
 
-        initMap();
+        function updateMapColor() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const color = (currentTheme === 'dark') ? '#3d71e9' : '#2b59c3';
+            if (serviceCircle) {
+                serviceCircle.setStyle({color: color, fillColor: color});
+            } else {
+                serviceCircle = L.circle([34.2570, -92.4281], { 
+                    color: color, fillColor: color, fillOpacity: 0.2, radius: 112654 
+                }).addTo(map);
+            }
+        }
 
         function toggleTheme() {
             const doc = document.documentElement;
@@ -269,27 +286,32 @@
                 doc.removeAttribute('data-theme');
                 if(icon) icon.innerText = '☀️';
                 localStorage.setItem('theme', 'light');
-                if(serviceCircle) serviceCircle.setStyle({color: '#2b59c3', fillColor: '#2b59c3'});
             } else {
                 doc.setAttribute('data-theme', 'dark');
                 if(icon) icon.innerText = '🌙';
                 localStorage.setItem('theme', 'dark');
-                if(serviceCircle) serviceCircle.setStyle({color: '#3d71e9', fillColor: '#3d71e9'});
             }
+            if (map) updateMapColor();
         }
 
         function revealContent(id) {
-            const ids = ['phone-content', 'message-content', 'service-content'];
+            const ids = ['phone-content', 'message-content', 'service-area'];
             ids.forEach(sectionId => {
                 const el = document.getElementById(sectionId);
                 if (sectionId === id) {
                     const isVisible = el.style.display === 'block';
                     el.style.display = isVisible ? 'none' : 'block';
-                    if (id === 'service-content' && !isVisible) setTimeout(() => map.invalidateSize(), 100);
-                } else { el.style.display = 'none'; }
+                    if (id === 'service-area' && !isVisible) {
+                        setTimeout(() => {
+                            initMap();
+                            map.invalidateSize();
+                        }, 100);
+                    }
+                } else {
+                    el.style.display = 'none';
+                }
             });
         }
     </script>
 </body>
 </html>
-```
