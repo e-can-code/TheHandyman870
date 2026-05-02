@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
     <style>
@@ -47,6 +48,7 @@
             transition: background-color 0.3s ease;
         }
 
+        /* Top Bar Navigation */
         .top-bar {
             width: 100%;
             display: flex;
@@ -107,6 +109,7 @@
             letter-spacing: 3px;
         }
 
+        /* Interaction Buttons */
         .buttons {
             display: flex;
             justify-content: center;
@@ -127,6 +130,7 @@
             cursor: pointer;
             box-shadow: var(--shadow);
             transition: all 0.1s;
+            text-decoration: none;
         }
 
         .action-btn:active {
@@ -134,6 +138,7 @@
             box-shadow: 2px 2px 0px var(--btn-border);
         }
 
+        /* Reveal Section Styling */
         .reveal-section {
             display: none;
             background-color: var(--content-bg);
@@ -220,15 +225,15 @@
         <div id="phone-content" class="reveal-section">
             <div class="section-header">Direct Contact</div>
             <div style="font-size: 36px; font-weight: 900; letter-spacing: 1px;">(870) ###-####</div>
-            <p style="color: var(--sub-text); margin-top: 12px; font-size: 15px;">Available for calls and text messages.</p>
+            <p style="color: var(--sub-text); margin-top: 12px; font-size: 15px;">Available for direct calls and project text messages.</p>
         </div>
 
         <div id="message-content" class="reveal-section">
             <div class="section-header">Project Inquiry</div>
-            <form action="#" method="POST">
-                <input class="form-input" type="text" placeholder="NAME" required>
-                <input class="form-input" type="email" placeholder="EMAIL" required>
-                <textarea class="form-input" rows="5" placeholder="Describe your project or ask the handyman a question."></textarea>
+            <form action="mailto:YOUR_ZOHO_EMAIL@zoho.com" method="GET" enctype="text/plain">
+                <input class="form-input" name="Name" type="text" placeholder="NAME" required>
+                <input class="form-input" name="Email" type="email" placeholder="EMAIL" required>
+                <textarea class="form-input" name="body" rows="5" placeholder="Describe your project or ask the handyman a question."></textarea>
                 <button type="submit" class="action-btn" style="width: 100%; box-shadow: none;">Send Request</button>
             </form>
         </div>
@@ -242,11 +247,10 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Global Map Variables
         let map;
         let serviceCircle;
 
-        // Theme Initialization
+        // Theme Management
         const savedTheme = localStorage.getItem('theme');
         const themeIcon = document.getElementById('theme-icon');
         
@@ -296,16 +300,12 @@
             ids.forEach(sectionId => {
                 const el = document.getElementById(sectionId);
                 if (sectionId === id) {
-                    // Toggle the clicked section
                     const isVisible = el.style.display === 'block';
                     el.style.display = isVisible ? 'none' : 'block';
-                    
-                    // Refresh map if it's the map section
                     if (id === 'service-content' && !isVisible) {
                         setTimeout(() => map.invalidateSize(), 100);
                     }
                 } else {
-                    // Hide all other sections
                     el.style.display = 'none';
                 }
             });
