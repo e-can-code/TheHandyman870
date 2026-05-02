@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Team | The Handyman 870</title>
+    <title>Operations | The Handyman 870</title>
     
     <script>
         const savedTheme = localStorage.getItem('theme');
@@ -18,6 +18,7 @@
             --text-color: #4a86e8;
             --sub-text: #8ab4f8;
             --btn-border: #4a86e8;
+            --placeholder-bg: #f2f2f2;
         }
 
         [data-theme="dark"] {
@@ -25,6 +26,7 @@
             --text-color: #d3d3d3;
             --sub-text: #a9a9a9;
             --btn-border: #808080;
+            --placeholder-bg: #1a1a1a;
         }
 
         body {
@@ -39,52 +41,86 @@
         }
 
         .container {
-            max-width: 650px; /* Narrower for a more focused, minimalist feel */
+            max-width: 600px;
             width: 100%;
             padding: 80px 20px;
         }
 
         h1 {
-            font-size: 24px;
+            font-size: 20px;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 50px;
-            font-weight: bold;
-        }
-
-        .team-list {
-            width: 100%;
+            letter-spacing: 4px;
             margin-bottom: 60px;
+            font-weight: bold;
+            opacity: 0.9;
         }
 
-        .member {
-            padding: 20px 0;
-            border-bottom: 1px solid var(--btn-border);
+        .team-stack {
+            width: 100%;
+            margin-bottom: 80px;
+        }
+
+        .member-row {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--btn-border);
+        }
+
+        .member-row:first-child {
+            border-top: 1px solid var(--btn-border);
+        }
+
+        .member-meta {
+            flex: 1;
         }
 
         .name {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
+            margin-bottom: 4px;
+            display: block;
         }
 
         .role {
-            font-size: 14px;
+            font-size: 13px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             color: var(--sub-text);
+        }
+
+        /* Structured Photo Placeholder */
+        .photo-box {
+            width: 120px;
+            height: 120px;
+            background-color: var(--placeholder-bg);
+            border: 1px solid var(--btn-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--sub-text);
+            margin-left: 20px;
+            overflow: hidden;
+        }
+
+        .photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* This will make your future photos look great automatically */
         }
 
         .nav-link {
             text-decoration: none;
             color: var(--text-color);
-            font-size: 13px;
+            font-size: 12px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             border: 1px solid var(--btn-border);
-            padding: 12px 24px;
+            padding: 14px 28px;
             transition: 0.2s;
         }
 
@@ -92,27 +128,47 @@
             background-color: var(--text-color);
             color: var(--bg-color);
         }
+
+        @media (max-width: 480px) {
+            .photo-box { width: 80px; height: 80px; }
+            .name { font-size: 18px; }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>The Team</h1>
+        <h1>Operations</h1>
 
-        <div class="team-list">
-            <div class="member">
-                <span class="name">Name</span>
-                <span class="role">Lead Handyman</span>
+        <div class="team-stack">
+            <div class="member-row">
+                <div class="member-meta">
+                    <span class="name">Name</span>
+                    <span class="role">Lead Handyman</span>
+                </div>
+                <div class="photo-box">
+                    <span>[PHOTO]</span>
+                    </div>
             </div>
 
-            <div class="member">
-                <span class="name">Name</span>
-                <span class="role">Junior Handyman</span>
+            <div class="member-row">
+                <div class="member-meta">
+                    <span class="name">Name</span>
+                    <span class="role">Junior Handyman</span>
+                </div>
+                <div class="photo-box">
+                    <span>[PHOTO]</span>
+                </div>
             </div>
 
-            <div class="member">
-                <span class="name">Name</span>
-                <span class="role">Office Operations</span>
+            <div class="member-row">
+                <div class="member-meta">
+                    <span class="name">Name</span>
+                    <span class="role">Office Operations</span>
+                </div>
+                <div class="photo-box">
+                    <span>[PHOTO]</span>
+                </div>
             </div>
         </div>
 
