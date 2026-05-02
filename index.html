@@ -184,12 +184,18 @@
         </div>
 
         <div id="message-content" class="reveal-section">
-            <div class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea rows="5" placeholder="How can we help you?" required></textarea>
-                <button class="action-btn" style="padding: 10px;">Send Message</button>
-            </div>
+            <form class="contact-form" action="https://forms.zohopublic.com/YOUR_ACCOUNT/form/YOUR_FORM/htmlRecords/submit" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+                
+                <input type="hidden" name="zf_referrer_name" value="">
+                <input type="hidden" name="zf_redirect_url" value="">
+                <input type="hidden" name="zc_gad" value="">
+
+                <input type="text" name="SingleLine" placeholder="Your Name" required>
+                <input type="email" name="Email" placeholder="Your Email" required>
+                <textarea name="MultiLine" rows="5" placeholder="How can we help you?" required></textarea>
+                
+                <button type="submit" class="action-btn" style="padding: 10px;">Send Message</button>
+            </form>
         </div>
 
         <div id="service-content" class="reveal-section">
@@ -212,12 +218,10 @@
 
         // Handle revealing content below buttons
         function revealContent(sectionId) {
-            // List of all section IDs
             const sections = ['phone-content', 'message-content', 'service-content'];
             
             sections.forEach(id => {
                 const element = document.getElementById(id);
-                // If the section clicked is already open, close it. Otherwise, open it.
                 if (id === sectionId) {
                     if (element.style.display === 'block') {
                         element.style.display = 'none';
@@ -225,7 +229,6 @@
                         element.style.display = 'block';
                     }
                 } else {
-                    // Close all other sections
                     element.style.display = 'none';
                 }
             });
