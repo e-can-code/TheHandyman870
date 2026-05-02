@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
     <style>
@@ -48,7 +48,6 @@
             transition: background-color 0.3s ease;
         }
 
-        /* Top Bar Navigation */
         .top-bar {
             width: 100%;
             display: flex;
@@ -75,15 +74,7 @@
             transition: all 0.1s;
         }
 
-        .nav-item:hover {
-            background: var(--btn-border);
-            color: var(--bg-color);
-        }
-
-        #theme-icon {
-            font-size: 16px;
-            color: var(--accent-glow);
-        }
+        #theme-icon { font-size: 16px; color: var(--accent-glow); }
 
         .container {
             text-align: center;
@@ -109,7 +100,6 @@
             letter-spacing: 3px;
         }
 
-        /* Interaction Buttons */
         .buttons {
             display: flex;
             justify-content: center;
@@ -130,7 +120,6 @@
             cursor: pointer;
             box-shadow: var(--shadow);
             transition: all 0.1s;
-            text-decoration: none;
         }
 
         .action-btn:active {
@@ -138,7 +127,6 @@
             box-shadow: 2px 2px 0px var(--btn-border);
         }
 
-        /* Reveal Section Styling */
         .reveal-section {
             display: none;
             background-color: var(--content-bg);
@@ -158,7 +146,7 @@
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             font-size: 13px;
             display: flex;
             align-items: center;
@@ -167,24 +155,22 @@
         .section-header::before {
             content: "";
             display: inline-block;
-            width: 12px;
-            height: 12px;
+            width: 12px; height: 12px;
             background: var(--accent-glow);
             margin-right: 10px;
         }
 
-        .service-rhythm {
-            font-style: italic;
-            color: var(--sub-text);
-            font-size: 14px;
-            margin-bottom: 20px;
-            display: block;
+        /* FORM GRID FOR NAME FIELD */
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
         }
 
         .form-input {
             width: 100%;
             padding: 16px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border: 2px solid var(--btn-border);
             background: var(--bg-color);
             color: var(--text-color);
@@ -193,6 +179,8 @@
             font-size: 16px;
             outline: none;
         }
+
+        .half-input { flex: 1; margin-bottom: 0; }
 
         #service-map {
             height: 400px;
@@ -225,22 +213,25 @@
         <div id="phone-content" class="reveal-section">
             <div class="section-header">Direct Contact</div>
             <div style="font-size: 36px; font-weight: 900; letter-spacing: 1px;">(870) ###-####</div>
-            <p style="color: var(--sub-text); margin-top: 12px; font-size: 15px;">Available for direct calls and project text messages.</p>
+            <p style="color: var(--sub-text); margin-top: 12px;">Direct calls and project text messages.</p>
         </div>
 
         <div id="message-content" class="reveal-section">
             <div class="section-header">Project Inquiry</div>
-            <form action="mailto:YOUR_ZOHO_EMAIL@zoho.com" method="GET" enctype="text/plain">
-                <input class="form-input" name="Name" type="text" placeholder="NAME" required>
+            <form action="https://forms.zohopublic.com/canadayechogm1/form/ContactUs/formperma/7hL3TfO67aPB6ft4EoyHJeAAV8vNX---k4weK3H0nWc" method="POST">
+                <div class="form-row">
+                    <input class="form-input half-input" name="Name_First" type="text" placeholder="FIRST NAME" required>
+                    <input class="form-input half-input" name="Name_Last" type="text" placeholder="LAST NAME" required>
+                </div>
                 <input class="form-input" name="Email" type="email" placeholder="EMAIL" required>
-                <textarea class="form-input" name="body" rows="5" placeholder="Describe your project or ask the handyman a question."></textarea>
+                <textarea class="form-input" name="Description" rows="5" placeholder="Leave us a few words..."></textarea>
                 <button type="submit" class="action-btn" style="width: 100%; box-shadow: none;">Send Request</button>
             </form>
         </div>
 
         <div id="service-content" class="reveal-section">
             <div class="section-header">Service Area</div>
-            <span class="service-rhythm">From Little Rock to El Dorado; from Dierks to Pine Bluff</span>
+            <span style="font-style: italic; color: var(--sub-text); display: block; margin-bottom: 20px;">From Little Rock to El Dorado; from Dierks to Pine Bluff</span>
             <div id="service-map"></div>
         </div>
     </div>
@@ -250,7 +241,6 @@
         let map;
         let serviceCircle;
 
-        // Theme Management
         const savedTheme = localStorage.getItem('theme');
         const themeIcon = document.getElementById('theme-icon');
         
@@ -259,19 +249,13 @@
             if(themeIcon) themeIcon.innerText = '🌙';
         }
 
-        // Initialize Map
         function initMap() {
             map = L.map('service-map', { zoomControl: false }).setView([34.2570, -92.4281], 7);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-            
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const color = (currentTheme === 'dark') ? '#3d71e9' : '#2b59c3';
-            
             serviceCircle = L.circle([34.2570, -92.4281], { 
-                color: color, 
-                fillColor: color, 
-                fillOpacity: 0.2, 
-                radius: 112654 
+                color: color, fillColor: color, fillOpacity: 0.2, radius: 112654 
             }).addTo(map);
         }
 
@@ -281,7 +265,6 @@
             const doc = document.documentElement;
             const icon = document.getElementById('theme-icon');
             const isDark = doc.getAttribute('data-theme') === 'dark';
-            
             if (isDark) {
                 doc.removeAttribute('data-theme');
                 if(icon) icon.innerText = '☀️';
@@ -302,14 +285,11 @@
                 if (sectionId === id) {
                     const isVisible = el.style.display === 'block';
                     el.style.display = isVisible ? 'none' : 'block';
-                    if (id === 'service-content' && !isVisible) {
-                        setTimeout(() => map.invalidateSize(), 100);
-                    }
-                } else {
-                    el.style.display = 'none';
-                }
+                    if (id === 'service-content' && !isVisible) setTimeout(() => map.invalidateSize(), 100);
+                } else { el.style.display = 'none'; }
             });
         }
     </script>
 </body>
 </html>
+```
