@@ -17,29 +17,29 @@
     <style>
         html { scroll-behavior: smooth; }
 
-        /* Modern, High-Trust Color Variables */
+        /* Sleek, Authoritative Color Variables */
         :root {
-            --bg-color: #f4f6f8;       
+            --bg-color: #f8f9fa;       
             --content-bg: #ffffff;     
-            --text-color: #334155;     
-            --sub-text: #64748b;       
-            --primary-blue: #2563eb;   
-            --primary-hover: #1d4ed8;  
+            --text-color: #212529;     
+            --sub-text: #495057;       
+            --primary-blue: #1a365d;   /* Deep, authoritative Navy Blue */
+            --primary-hover: #2b6cb0;  
             --btn-text: #ffffff;       
-            --border-color: #e2e8f0;   
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #dee2e6;   
+            --shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Tighter, grounded shadow */
         }
 
         [data-theme="dark"] {
-            --bg-color: #0f172a;       
-            --content-bg: #1e293b;     
-            --text-color: #f8fafc;     
-            --sub-text: #94a3b8;       
-            --primary-blue: #3b82f6;   
-            --primary-hover: #60a5fa;  
+            --bg-color: #121212;       /* Structured charcoal */
+            --content-bg: #1e1e1e;     
+            --text-color: #e0e0e0;     
+            --sub-text: #a0a0a0;       
+            --primary-blue: #3182ce;   /* Clear, legible blue for dark mode */
+            --primary-hover: #63b3ed;  
             --btn-text: #ffffff;       
-            --border-color: #334155;
-            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            --border-color: #333333;
+            --shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
         }
 
         /* Global Styles */
@@ -68,19 +68,18 @@
             background: var(--content-bg);
             border: 1px solid var(--border-color);
             color: var(--text-color);
-            font-size: 20px;
-            padding: 8px 16px;
+            font-size: 18px;
+            padding: 8px 12px;
             cursor: pointer;
-            border-radius: 50px;
+            border-radius: 4px; /* Crisp corners */
             box-shadow: var(--shadow);
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.2s;
             display: inline-flex;
             align-items: center;
         }
 
         .theme-toggle:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-blue);
         }
 
         .container {
@@ -92,8 +91,8 @@
         }
 
         h1 {
-            font-size: 42px;
-            font-weight: 800;
+            font-size: 40px;
+            font-weight: 700;
             margin-bottom: 5px;
             letter-spacing: -0.5px;
         }
@@ -122,15 +121,17 @@
 
         .action-btn {
             background-color: var(--primary-blue);
-            border: none;
+            border: 1px solid var(--primary-blue);
             color: var(--btn-text);
-            padding: 16px 32px;
-            font-size: 18px;
+            padding: 14px 28px;
+            font-size: 16px;
             font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase; /* Adds architectural authority */
             cursor: pointer;
-            border-radius: 8px;
+            border-radius: 4px; /* Crisp corners */
             box-shadow: var(--shadow);
-            transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+            transition: all 0.2s;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -139,22 +140,21 @@
 
         .action-btn:hover {
             background-color: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+            border-color: var(--primary-hover);
         }
 
         .reveal-section, .permanent-section {
             background-color: var(--content-bg);
             border: 1px solid var(--border-color);
             padding: 40px 30px;
-            border-radius: 16px;
+            border-radius: 4px; /* Crisp corners */
             margin-bottom: 40px;
             box-shadow: var(--shadow);
         }
 
         .reveal-section {
             display: none;
-            animation: fadeIn 0.4s ease-out;
+            animation: fadeIn 0.3s ease-out;
         }
 
         .permanent-section {
@@ -165,13 +165,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
+            from { opacity: 0; transform: translateY(-5px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .phone-display {
-            font-size: 36px;
-            font-weight: 800;
+            font-size: 32px;
+            font-weight: 700;
             color: var(--primary-blue);
             letter-spacing: 1px;
         }
@@ -179,35 +179,34 @@
         .contact-form {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
             max-width: 400px;
             margin: 0 auto;
         }
 
         .contact-form input, .contact-form textarea {
-            padding: 14px;
+            padding: 12px;
             font-size: 16px;
             font-family: inherit;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
             background-color: var(--bg-color);
             color: var(--text-color);
-            transition: border-color 0.2s, outline 0.2s;
+            transition: border-color 0.2s;
         }
 
         .contact-form input:focus, .contact-form textarea:focus {
             border-color: var(--primary-blue);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
         }
 
-        /* NEW MAP STYLES */
+        /* MAP STYLES */
         #service-map {
             height: 400px; 
             width: 100%; 
-            border-radius: 8px; 
+            border-radius: 4px; 
             border: 1px solid var(--border-color);
-            z-index: 1; /* Keeps map elements from overlapping your site */
+            z-index: 1; 
         }
 
     </style>
@@ -248,12 +247,12 @@
                 <input type="text" name="Email" checktype="c5" fieldType="9" maxlength="255" placeholder="Email" required>
                 <textarea name="MultiLine" checktype="c1" maxlength="65535" rows="5" placeholder="Leave us a few words" required></textarea>
                 
-                <button type="submit" class="action-btn" style="padding: 10px;">Send Message</button>
+                <button type="submit" class="action-btn" style="padding: 12px; margin-top: 10px;">Send Message</button>
             </form>
         </div>
 
         <div id="service-content" class="permanent-section">
-            <h3 style="margin-top: 0; margin-bottom: 15px; font-weight: bold; color: var(--text-color);">Our Service Area</h3>
+            <h3 style="margin-top: 0; margin-bottom: 15px; font-weight: 600; color: var(--text-color);">Our Service Area</h3>
             <p style="margin-bottom: 20px;">From Little Rock to El Dorado; from Dierks to Pine Bluff</p>
             
             <div id="service-map"></div>
@@ -265,35 +264,28 @@
     
     <script>
         // --- MAP CONFIGURATION ---
-        // 1. Find your latitude and longitude on Google Maps
-        // 2. Paste them here to set the center of the circle
-        var lat = 34.2570; // Currently set somewhere near Pine Bluff/Little Rock
-        var lng = -96.4281;
-
-        // 3. Set the radius in miles
-        var radiusInMiles = 100; 
-
+        var lat = 34.2570; 
+        var lng = -92.4281;
+        var radiusInMiles = 70; 
         // -------------------------
 
-        // Initialize the map
         var map = L.map('service-map').setView([lat, lng], 7);
 
-        // Load the street map tiles
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© OpenStreetMap'
         }).addTo(map);
 
-        // Convert miles to meters for the code, then draw the big blue circle
         var radiusInMeters = radiusInMiles * 1609.34;
+        
+        // Changed map circle to match the new deep Navy Blue
         var serviceCircle = L.circle([lat, lng], {
-            color: '#2563eb',       // Blue outline
-            fillColor: '#3b82f6',   // Blue fill
-            fillOpacity: 0.3,       // How transparent the circle is
+            color: '#1a365d',       
+            fillColor: '#2b6cb0',   
+            fillOpacity: 0.3,       
             radius: radiusInMeters
         }).addTo(map);
 
-        // Toggle Theme Logic
         function toggleTheme() {
             const body = document.documentElement;
             if (body.getAttribute('data-theme') === 'dark') {
@@ -305,7 +297,6 @@
             }
         }
 
-        // Reveal Content Logic
         function revealContent(sectionId) {
             const sections = ['phone-content', 'message-content'];
             sections.forEach(id => {
