@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>About The Handyman</title>
-
+    <title>About Us | The Handyman 870</title>
+    
     <script>
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
@@ -13,7 +13,6 @@
     </script>
 
     <style>
-        /* Exact same CSS Variables as index.html */
         :root {
             --bg-color: #ffffff;
             --text-color: #4a86e8;
@@ -32,173 +31,154 @@
             --content-bg: #222222;
         }
 
-        /* Global Styles */
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            transition: background-color 0.3s, color 0.3s;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
         }
 
-        /* Top Bar for Navigation & Theme Toggle */
-        .top-bar {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .theme-toggle, .back-btn {
-            background: transparent;
-            border: 2px solid var(--btn-border);
-            color: var(--text-color);
-            padding: 5px 15px;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 18px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        /* Main Content Container */
         .container {
-            text-align: center;
-            margin-top: 20px;
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
-            padding: 0 20px 60px;
+            padding: 40px 20px;
         }
 
         h1 {
-            font-size: 48px;
+            font-size: 42px;
+            text-align: center;
             margin-bottom: 10px;
         }
 
-        h3 {
-            font-size: 24px;
-            color: var(--sub-text);
-            font-weight: normal;
-            margin-bottom: 40px;
+        .divider {
+            height: 2px;
+            background-color: var(--btn-border);
+            width: 60px;
+            margin: 20px auto 40px auto;
         }
 
-        .about-text {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 50px;
+        .back-btn {
+            background: transparent;
+            border: 2px solid var(--btn-border);
             color: var(--text-color);
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-flex;
+            margin-bottom: 30px;
         }
 
-        /* Future Team Photo Grid */
+        /* TEAM GRID STYLES */
         .team-grid {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-            justify-content: center;
+            margin-top: 40px;
         }
 
         .team-card {
             background-color: var(--content-bg);
             border: 1px solid var(--btn-border);
-            border-radius: 8px;
-            padding: 20px;
-            width: 200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: 25px 15px;
+            text-align: center;
+            border-radius: 4px;
         }
 
-        .image-placeholder {
-            width: 150px;
-            height: 150px;
+        .photo-placeholder {
+            width: 100px;
+            height: 100px;
             background-color: var(--btn-bg);
+            border: 1px solid var(--btn-border);
             border-radius: 50%;
+            margin: 0 auto 15px auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 15px;
+            font-size: 12px;
             color: var(--text-color);
-            font-weight: bold;
-            text-align: center;
-            padding: 10px;
-            box-sizing: border-box;
-            border: 2px dashed var(--btn-border);
         }
 
         .team-card h4 {
-            margin: 0 0 5px 0;
+            margin: 5px 0;
             font-size: 20px;
+            text-transform: uppercase;
         }
 
-        .team-card p {
-            margin: 0;
+        .team-card p.role {
+            font-weight: bold;
             color: var(--sub-text);
+            margin-bottom: 15px;
             font-size: 14px;
         }
 
+        .team-card p.bio {
+            font-size: 14px;
+            line-height: 1.4;
+            color: var(--text-color);
+        }
+
+        .content-box {
+            background-color: var(--content-bg);
+            border: 1px solid var(--btn-border);
+            padding: 30px;
+            border-radius: 4px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .team-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">
-        <a href="index.html" class="back-btn">← Back to Home</a>
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Light/Dark Mode">
-            ☀️ / 🌙
-        </button>
-    </div>
-
     <div class="container">
-        <h1>About Us</h1>
-        <h3>Quality work, from place to place.</h3>
+        <a href="index.html" class="back-btn">← Back Home</a>
 
-        <div class="about-text">
-            <p>We are a dedicated team of professionals proudly serving the beautiful state of Arkansas.</p>
-            <p>Our crew is currently out in the field making sure things are built right and fixed fast. We look forward to uploading photos of our team here soon so you can meet the faces behind the hard work!</p>
+        <h1>Meet the Team</h1>
+        <div class="divider"></div>
+
+        <div class="content-box">
+            <p><strong>Professional Service. Personal Touch.</strong></p>
+            <p>We aren't a giant, faceless corporation. We are a small, dedicated team focused on serving the 870 area with integrity. Whether you are speaking with our office to coordinate a visit or working with our handymen on-site, you are dealing with people who care about the outcome of your project.</p>
         </div>
 
         <div class="team-grid">
-            
             <div class="team-card">
-                <div class="image-placeholder">Photo Coming Soon</div>
-                <h4>Team Member</h4>
-                <p>Lead Handyman</p>
+                <div class="photo-placeholder">PHOTO</div>
+                <h4>Name</h4>
+                <p class="role">Lead Handyman</p>
+                <p class="bio">Expert in structural repairs and carpentry with over [X] years in the trades.</p>
             </div>
 
             <div class="team-card">
-                <div class="image-placeholder">Photo Coming Soon</div>
-                <h4>Team Member</h4>
-                <p>Handyman</p>
+                <div class="photo-placeholder">PHOTO</div>
+                <h4>Name</h4>
+                <p class="role">Office Operations</p>
+                <p class="bio">The logistical engine keeping our schedules tight and our clients informed.</p>
             </div>
 
             <div class="team-card">
-                <div class="image-placeholder">Photo Coming Soon</div>
-                <h4>Team Member</h4>
-                <p>Office Lady</p>
+                <div class="photo-placeholder">PHOTO</div>
+                <h4>Name</h4>
+                <p class="role">Handyman</p>
+                <p class="bio">Specializing in mechanical fixes, plumbing basics, and fine-tuned installations.</p>
             </div>
-
         </div>
 
+        <div style="text-align: center; margin-top: 60px;">
+            <a href="index.html" class="back-btn" style="padding: 15px 40px; font-size: 18px;">Contact Us to Get Started</a>
+        </div>
     </div>
 
-    <script>
-        // Updated Toggle: Now saves the preference to localStorage
-        function toggleTheme() {
-            const body = document.documentElement;
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-    </script>
 </body>
 </html>
