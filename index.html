@@ -1,36 +1,44 @@
+No, that was a snippet focusing on the specific style and copy changes. To ensure the "tactile" feel, the blueprint colors, and the new symbols all work together across the theme toggle, you need the full integrated code.
+
+Here is the **complete, production-ready `index.html`** with the bone/slate palette, the lowercase branding, and the refined "Send Request" language.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>The Handyman 870</title>
+    <title>the handyman 870.</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
     <style>
         :root {
-            --bg-color: #f8f9fa; /* Off-white for a "paper" feel */
-            --text-color: #1a202c; /* Deep slate */
-            --sub-text: #718096;
-            --btn-bg: #e2e8f0;
-            --btn-border: #2d3748; /* Darker, more serious borders */
-            --accent-blue: #3182ce;
+            /* ARCHITECTURAL LIGHT MODE (Blueprint/Bone) */
+            --bg-color: #f2efe9;      
+            --text-color: #24292e;    
+            --sub-text: #586069;
+            --btn-bg: #e1e4e8;        
+            --btn-border: #24292e;    
+            --accent: #0366d6;        
             --content-bg: #ffffff;
-            --shadow: 4px 4px 0px var(--btn-border); /* Tactile hard shadow */
+            --shadow: 5px 5px 0px var(--btn-border);
         }
 
         [data-theme="dark"] {
-            --bg-color: #121212; /* Deep charcoal, not pure black */
-            --text-color: #e2e8f0;
-            --sub-text: #a0aec0;
-            --btn-bg: #2d3748;
-            --btn-border: #4a5568;
-            --content-bg: #1a202c;
-            --shadow: 4px 4px 0px #000000;
+            /* ENGINEERED DARK MODE (Charcoal/Slate) */
+            --bg-color: #1a1a1b;      
+            --text-color: #d1d5da;
+            --sub-text: #959da5;
+            --btn-bg: #2f363d;
+            --btn-border: #444d56;
+            --accent: #79b8ff;
+            --content-bg: #24292e;
+            --shadow: 5px 5px 0px #000000;
         }
 
         body {
@@ -42,36 +50,37 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s, color 0.2s;
         }
 
+        /* Top Bar with Symbols */
         .top-bar {
             width: 100%;
             display: flex;
             justify-content: flex-end;
-            gap: 15px;
+            gap: 12px;
             padding: 20px;
             box-sizing: border-box;
         }
 
-        /* Nav Items styled like hardware labels */
         .nav-item {
             background: var(--content-bg);
             border: 2px solid var(--btn-border);
             color: var(--text-color);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
             padding: 8px 16px;
             cursor: pointer;
             text-decoration: none;
+            display: flex;
+            align-items: center;
             transition: all 0.1s;
         }
 
         .nav-item:active {
             transform: translate(2px, 2px);
-            box-shadow: none;
         }
 
         .container {
@@ -85,24 +94,24 @@
         h1 {
             font-size: clamp(34px, 8vw, 64px);
             font-weight: 900;
-            letter-spacing: -2px;
+            letter-spacing: -3px;
             margin-bottom: 0;
-            text-transform: lowercase; /* Modern, engineered look */
+            text-transform: lowercase; 
         }
 
         .header-phone {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 400;
             color: var(--sub-text);
             margin-top: 5px;
             letter-spacing: 2px;
         }
 
-        /* Action Buttons with "Press" effect */
+        /* Tactile Buttons */
         .buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 18px;
             margin: 50px 0;
             flex-wrap: wrap;
         }
@@ -111,7 +120,7 @@
             background-color: var(--btn-bg);
             border: 2px solid var(--btn-border);
             color: var(--text-color);
-            padding: 20px 40px;
+            padding: 20px 36px;
             font-size: 16px;
             font-weight: 800;
             text-transform: uppercase;
@@ -128,10 +137,10 @@
 
         .action-btn:active {
             transform: translate(4px, 4px);
-            box-shadow: none;
+            box-shadow: 1px 1px 0px var(--btn-border);
         }
 
-        /* Content Sections */
+        /* Reveal Sections */
         .reveal-section {
             display: none;
             background-color: var(--content-bg);
@@ -140,19 +149,12 @@
             margin-bottom: 60px;
             text-align: left;
             animation: slideUp 0.2s ease-out;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.05);
         }
 
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Map styling to desaturate background tiles */
-        #service-map {
-            height: 400px;
-            width: 100%;
-            border: 1px solid var(--btn-border);
-            filter: grayscale(0.5); /* Muted map tiles */
         }
 
         .form-input {
@@ -164,6 +166,24 @@
             color: var(--text-color);
             font-family: inherit;
             box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        #service-map {
+            height: 400px;
+            width: 100%;
+            border: 1px solid var(--btn-border);
+            filter: grayscale(0.6) contrast(1.1); 
+        }
+
+        .section-title {
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
         }
 
     </style>
@@ -171,8 +191,12 @@
 <body>
 
     <div class="top-bar">
-        <a href="about.html" class="nav-item">Operations</a>
-        <button class="nav-item" onclick="toggleTheme()">Mode</button>
+        <a href="about.html" class="nav-item">
+            <span style="margin-right: 8px;">👤</span> The Team
+        </a>
+        <button class="nav-item" onclick="toggleTheme()">
+            <span id="theme-icon">☀️</span>
+        </button>
     </div>
 
     <div class="container">
@@ -182,51 +206,80 @@
         <div class="buttons">
             <button class="action-btn" onclick="revealContent('phone-content')">Phone</button>
             <button class="action-btn" onclick="revealContent('message-content')">Inquiry</button>
-            <button class="action-btn" onclick="revealContent('service-content')">Service</button>
+            <button class="action-btn" onclick="revealContent('service-content')">Service Area</button>
         </div>
 
         <div id="phone-content" class="reveal-section">
+            <div class="section-title">Direct Contact</div>
             <div style="font-size: 32px; font-weight: 900; letter-spacing: 1px;">(870) ###-####</div>
-            <p style="color: var(--sub-text);">Direct line for calls and SMS messaging.</p>
+            <p style="color: var(--sub-text); margin-top: 10px;">Available for direct calls and SMS messages.</p>
         </div>
 
         <div id="message-content" class="reveal-section">
+            <div class="section-title">Project Inquiry</div>
             <form action="https://forms.zohopublic.com/..." method="POST">
                 <input class="form-input" type="text" placeholder="FULL NAME" required>
                 <input class="form-input" type="email" placeholder="EMAIL ADDRESS" required>
-                <textarea class="form-input" rows="5" placeholder="QUESTIONS AND PROJECT DESCRIPTION"></textarea>
-                <button type="submit" class="action-btn" style="width: 100%; box-shadow: none;">Submit Dispatch</button>
+                <textarea class="form-input" rows="5" placeholder="HOW CAN WE HELP?"></textarea>
+                <button type="submit" class="action-btn" style="width: 100%; box-shadow: none;">Send Request</button>
             </form>
         </div>
 
         <div id="service-content" class="reveal-section">
-            <div style="font-weight: 800; margin-bottom: 20px; text-transform: uppercase;">Active Coverage Area</div>
+            <div class="section-title">Active Coverage Area</div>
             <div id="service-map"></div>
+            <p style="margin-top: 15px; font-size: 14px; color: var(--sub-text);">Serving the region from Little Rock to El Dorado.</p>
         </div>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // LEAFLET LOGIC (Same as before but ready for the theme)
+        // Check local storage for theme on load
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('theme-icon').innerText = '🌙';
+        }
+
+        // Initialize Map
         var map = L.map('service-map').setView([34.2570, -92.4281], 7);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-        L.circle([34.2570, -92.4281], { color: '#3182ce', radius: 112654 }).addTo(map);
+        L.circle([34.2570, -92.4281], { 
+            color: '#0366d6', 
+            fillColor: '#0366d6', 
+            fillOpacity: 0.2, 
+            radius: 112654 
+        }).addTo(map);
 
         function toggleTheme() {
             const doc = document.documentElement;
             const isDark = doc.getAttribute('data-theme') === 'dark';
-            doc.setAttribute('data-theme', isDark ? 'light' : 'dark');
-            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+            const icon = document.getElementById('theme-icon');
+            
+            if (isDark) {
+                doc.removeAttribute('data-theme');
+                icon.innerText = '☀️';
+                localStorage.setItem('theme', 'light');
+            } else {
+                doc.setAttribute('data-theme', 'dark');
+                icon.innerText = '🌙';
+                localStorage.setItem('theme', 'dark');
+            }
         }
 
         function revealContent(id) {
             const ids = ['phone-content', 'message-content', 'service-content'];
             ids.forEach(sectionId => {
                 const el = document.getElementById(sectionId);
-                el.style.display = (sectionId === id && el.style.display !== 'block') ? 'block' : 'none';
-                if (id === 'service-content') setTimeout(() => map.invalidateSize(), 100);
+                if (sectionId === id) {
+                    el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+                    if (id === 'service-content') setTimeout(() => map.invalidateSize(), 100);
+                } else {
+                    el.style.display = 'none';
+                }
             });
         }
     </script>
 </body>
 </html>
+```
