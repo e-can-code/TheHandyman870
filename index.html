@@ -17,36 +17,30 @@
     <style>
         html { scroll-behavior: smooth; }
 
-        /* Sleek, Authoritative Color Variables */
+        /* ORIGINAL CSS Variables */
         :root {
-            --bg-color: #f8f9fa;       
-            --content-bg: #ffffff;     
-            --text-color: #212529;     
-            --sub-text: #495057;       
-            --primary-blue: #1a365d;   /* Deep, authoritative Navy Blue */
-            --primary-hover: #2b6cb0;  
-            --btn-text: #ffffff;       
-            --border-color: #dee2e6;   
-            --shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Tighter, grounded shadow */
+            --bg-color: #ffffff;
+            --text-color: #4a86e8;
+            --sub-text: #8ab4f8;
+            --btn-bg: #cce5ff;
+            --btn-border: #4a86e8;
+            --content-bg: #f8f9fa;
         }
 
         [data-theme="dark"] {
-            --bg-color: #121212;       /* Structured charcoal */
-            --content-bg: #1e1e1e;     
-            --text-color: #e0e0e0;     
-            --sub-text: #a0a0a0;       
-            --primary-blue: #3182ce;   /* Clear, legible blue for dark mode */
-            --primary-hover: #63b3ed;  
-            --btn-text: #ffffff;       
-            --border-color: #333333;
-            --shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            --bg-color: #000000;
+            --text-color: #d3d3d3;
+            --sub-text: #a9a9a9;
+            --btn-bg: #404040;
+            --btn-border: #808080;
+            --content-bg: #222222;
         }
 
         /* Global Styles */
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             transition: background-color 0.3s, color 0.3s;
@@ -56,82 +50,81 @@
             min-height: 100vh;
         }
 
+        /* Top Bar with About Us and Theme Toggle */
         .top-bar {
             width: 100%;
             display: flex;
             justify-content: flex-end;
+            align-items: center;
+            gap: 15px;
             padding: 20px;
             box-sizing: border-box;
         }
 
-        .theme-toggle {
-            background: var(--content-bg);
-            border: 1px solid var(--border-color);
+        .top-btn {
+            background: transparent;
+            border: 2px solid var(--btn-border);
             color: var(--text-color);
             font-size: 18px;
-            padding: 8px 12px;
+            padding: 5px 15px;
             cursor: pointer;
-            border-radius: 4px; /* Crisp corners */
-            box-shadow: var(--shadow);
-            transition: all 0.2s;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
+            height: 40px; /* Keeps them the same height */
+            box-sizing: border-box;
         }
 
-        .theme-toggle:hover {
-            border-color: var(--primary-blue);
+        .theme-toggle {
+            font-size: 20px;
         }
 
+        /* Main Content Container */
         .container {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 50px;
             max-width: 800px;
             width: 100%;
             padding: 0 20px;
         }
 
         h1 {
-            font-size: 40px;
-            font-weight: 700;
-            margin-bottom: 5px;
-            letter-spacing: -0.5px;
+            font-size: 48px;
+            margin-bottom: 10px;
         }
 
         h2 {
-            font-size: 24px;
-            color: var(--primary-blue);
+            font-size: 28px;
+            color: var(--sub-text);
             margin-top: 0;
             margin-bottom: 10px;
         }
 
         h3 {
-            font-size: 20px;
+            font-size: 24px;
             color: var(--sub-text);
-            font-weight: 400;
+            font-weight: normal;
             margin-bottom: 40px;
         }
 
+        /* Main Action Buttons Container */
         .buttons {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
             flex-wrap: wrap;
             margin-bottom: 40px;
         }
 
         .action-btn {
-            background-color: var(--primary-blue);
-            border: 1px solid var(--primary-blue);
-            color: var(--btn-text);
-            padding: 14px 28px;
-            font-size: 16px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase; /* Adds architectural authority */
+            background-color: var(--btn-bg);
+            border: 2px solid var(--btn-border);
+            color: var(--text-color);
+            padding: 20px 40px;
+            font-size: 20px;
             cursor: pointer;
-            border-radius: 4px; /* Crisp corners */
-            box-shadow: var(--shadow);
-            transition: all 0.2s;
+            border-radius: 4px;
+            transition: opacity 0.2s;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -139,41 +132,31 @@
         }
 
         .action-btn:hover {
-            background-color: var(--primary-hover);
-            border-color: var(--primary-hover);
+            opacity: 0.8;
         }
 
-        .reveal-section, .permanent-section {
-            background-color: var(--content-bg);
-            border: 1px solid var(--border-color);
-            padding: 40px 30px;
-            border-radius: 4px; /* Crisp corners */
-            margin-bottom: 40px;
-            box-shadow: var(--shadow);
-        }
-
+        /* Reveal Sections */
         .reveal-section {
             display: none;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        .permanent-section {
-            margin-top: 20px;
+            background-color: var(--content-bg);
+            border: 1px solid var(--btn-border);
+            padding: 30px;
+            border-radius: 8px;
             margin-bottom: 60px;
+            animation: fadeIn 0.3s;
             width: 100%;
             box-sizing: border-box;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-5px); }
+            from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .phone-display {
             font-size: 32px;
-            font-weight: 700;
-            color: var(--primary-blue);
-            letter-spacing: 1px;
+            font-weight: bold;
+            letter-spacing: 2px;
         }
 
         .contact-form {
@@ -185,28 +168,20 @@
         }
 
         .contact-form input, .contact-form textarea {
-            padding: 12px;
+            padding: 10px;
             font-size: 16px;
-            font-family: inherit;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--btn-border);
             border-radius: 4px;
             background-color: var(--bg-color);
             color: var(--text-color);
-            transition: border-color 0.2s;
         }
 
-        .contact-form input:focus, .contact-form textarea:focus {
-            border-color: var(--primary-blue);
-            outline: none;
-        }
-
-        /* MAP STYLES */
+        /* NEW MAP STYLES */
         #service-map {
             height: 400px; 
             width: 100%; 
-            border-radius: 4px; 
-            border: 1px solid var(--border-color);
-            z-index: 1; 
+            border: 1px solid var(--btn-border);
+            z-index: 1;
         }
 
     </style>
@@ -214,7 +189,8 @@
 <body>
 
     <div class="top-bar">
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Light/Dark Mode">
+        <a href="about.html" class="top-btn">About Us</a>
+        <button class="top-btn theme-toggle" onclick="toggleTheme()" aria-label="Toggle Light/Dark Mode">
             ☀️ / 🌙
         </button>
     </div>
@@ -227,7 +203,7 @@
         <div class="buttons">
             <button class="action-btn" onclick="revealContent('phone-content')">Phone</button>
             <button class="action-btn" onclick="revealContent('message-content')">Message Us</button>
-            <a href="about.html" class="action-btn">About Us</a>
+            <button class="action-btn" onclick="revealContent('service-content')">Service Area</button>
         </div>
 
         <div id="phone-content" class="reveal-section">
@@ -247,12 +223,12 @@
                 <input type="text" name="Email" checktype="c5" fieldType="9" maxlength="255" placeholder="Email" required>
                 <textarea name="MultiLine" checktype="c1" maxlength="65535" rows="5" placeholder="Leave us a few words" required></textarea>
                 
-                <button type="submit" class="action-btn" style="padding: 12px; margin-top: 10px;">Send Message</button>
+                <button type="submit" class="action-btn" style="padding: 10px;">Send Message</button>
             </form>
         </div>
 
-        <div id="service-content" class="permanent-section">
-            <h3 style="margin-top: 0; margin-bottom: 15px; font-weight: 600; color: var(--text-color);">Our Service Area</h3>
+        <div id="service-content" class="reveal-section">
+            <h3 style="margin-top: 0; margin-bottom: 15px; font-weight: bold; color: var(--text-color);">Our Service Area</h3>
             <p style="margin-bottom: 20px;">From Little Rock to El Dorado; from Dierks to Pine Bluff</p>
             
             <div id="service-map"></div>
@@ -278,14 +254,15 @@
 
         var radiusInMeters = radiusInMiles * 1609.34;
         
-        // Changed map circle to match the new deep Navy Blue
+        // Back to the bright original blue
         var serviceCircle = L.circle([lat, lng], {
-            color: '#1a365d',       
-            fillColor: '#2b6cb0',   
+            color: '#4a86e8',       
+            fillColor: '#8ab4f8',   
             fillOpacity: 0.3,       
             radius: radiusInMeters
         }).addTo(map);
 
+        // Toggle Theme Logic
         function toggleTheme() {
             const body = document.documentElement;
             if (body.getAttribute('data-theme') === 'dark') {
@@ -297,12 +274,22 @@
             }
         }
 
+        // Reveal Content Logic (Updated to fix hidden map sizing)
         function revealContent(sectionId) {
-            const sections = ['phone-content', 'message-content'];
+            const sections = ['phone-content', 'message-content', 'service-content'];
             sections.forEach(id => {
                 const element = document.getElementById(id);
                 if (id === sectionId) {
-                    element.style.display = element.style.display === 'block' ? 'none' : 'block';
+                    // Toggle visibility
+                    if (element.style.display === 'block') {
+                        element.style.display = 'none';
+                    } else {
+                        element.style.display = 'block';
+                        // Give the map a split second to realize it is visible, then tell it to resize
+                        if (id === 'service-content') {
+                            setTimeout(() => { map.invalidateSize(); }, 100);
+                        }
+                    }
                 } else {
                     element.style.display = 'none';
                 }
