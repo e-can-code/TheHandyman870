@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Handyman</title>
     <style>
+        /* Smooth scrolling for our new jump link */
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* CSS Variables for Light and Dark Modes */
         :root {
             --bg-color: #ffffff;
@@ -111,7 +116,7 @@
             opacity: 0.8;
         }
 
-        /* Reveal Sections */
+        /* Reveal Sections (Phone and Message) */
         .reveal-section {
             display: none;
             background-color: var(--content-bg);
@@ -122,12 +127,24 @@
             animation: fadeIn 0.3s;
         }
 
+        /* Permanent Section (Service Area) */
+        .permanent-section {
+            background-color: var(--content-bg);
+            border: 1px solid var(--btn-border);
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 20px;
+            margin-bottom: 60px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Specific Reveal Content Styles */
+        /* Specific Content Styles */
         .phone-display {
             font-size: 32px;
             font-weight: bold;
@@ -175,7 +192,7 @@
         <div class="buttons">
             <button class="action-btn" onclick="revealContent('phone-content')">Phone</button>
             <button class="action-btn" onclick="revealContent('message-content')">Message Us</button>
-            <button class="action-btn" onclick="revealContent('service-content')">Service Area</button>
+            <button class="action-btn" onclick="scrollToService()">Service Area</button>
         </div>
 
         <div id="phone-content" class="reveal-section">
@@ -200,7 +217,8 @@
             </form>
         </div>
 
-        <div id="service-content" class="reveal-section">
+        <div id="service-content" class="permanent-section">
+            <h3 style="margin-top: 0; margin-bottom: 15px; font-weight: bold;">Our Service Area</h3>
             <p>From Little Rock to El Dorado; from Dierks to Pine Bluff</p>
             <img class="map-img" src="AR-counties-codes-2019_arebUsCourts_dot_gov.jpg" alt="Map of Arkansas Counties">
         </div>
@@ -218,9 +236,10 @@
             }
         }
 
-        // Handle revealing content below buttons
+        // Handle revealing Phone and Message sections
         function revealContent(sectionId) {
-            const sections = ['phone-content', 'message-content', 'service-content'];
+            // Removed 'service-content' from this list so it is no longer hidden
+            const sections = ['phone-content', 'message-content'];
             
             sections.forEach(id => {
                 const element = document.getElementById(id);
@@ -234,6 +253,11 @@
                     element.style.display = 'none';
                 }
             });
+        }
+
+        // New function to smoothly scroll to the permanently visible map
+        function scrollToService() {
+            document.getElementById('service-content').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
