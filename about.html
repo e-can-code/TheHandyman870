@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Team | the handyman 870.</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -13,8 +15,11 @@
             --text-color: #1a1c1e;    
             --sub-text: #6a727c;
             --btn-bg: #2b59c3;        
+            --btn-text: #ffffff;      
             --btn-border: #1a1c1e;    
             --content-bg: #e6e2d6;    
+            --accent-glow: #2b59c3;
+            --shadow: 6px 6px 0px var(--btn-border);
         }
 
         [data-theme="dark"] {
@@ -22,8 +27,11 @@
             --text-color: #e3e6e9;
             --sub-text: #9ba3af;
             --btn-bg: #3d71e9;        
+            --btn-text: #ffffff;
             --btn-border: #000000;
             --content-bg: #1c1f23;
+            --accent-glow: #3d71e9;
+            --shadow: 6px 6px 0px #000000;
         }
 
         body {
@@ -35,6 +43,7 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            transition: background-color 0.3s ease;
         }
 
         .top-bar {
@@ -46,150 +55,128 @@
         }
 
         .nav-item {
-            background: var(--bg-color); 
+            background: transparent;
             border: 2px solid var(--btn-border);
             color: var(--text-color);
             font-size: 11px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            padding: 10px 20px;
+            padding: 10px 18px;
             cursor: pointer;
             text-decoration: none;
             transition: all 0.1s;
         }
 
+        .nav-item:hover {
+            background: var(--btn-border);
+            color: var(--bg-color);
+        }
+
         .container {
-            max-width: 600px;
+            max-width: 800px;
             width: 100%;
-            padding: 40px 20px;
+            padding: 0 20px;
+            margin-top: 40px;
+            margin-bottom: 80px;
         }
 
         h1 {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 60px;
+            font-size: clamp(32px, 6vw, 48px);
             font-weight: 900;
-            border-bottom: 2.5px solid var(--btn-border);
-            padding-bottom: 15px;
-            display: inline-block;
+            letter-spacing: -2px;
+            text-transform: lowercase;
+            margin-bottom: 40px;
         }
 
-        .member-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 30px;
+        .team-card {
             background-color: var(--content-bg);
-            border: 2px solid var(--btn-border);
-            margin-bottom: 20px;
-            box-shadow: 6px 6px 0px var(--btn-border);
+            border: 2.5px solid var(--btn-border);
+            padding: 40px;
+            margin-bottom: 30px;
+            text-align: left;
+            position: relative;
         }
 
-        /* TITLE CASE NAME STYLE */
-        .name {
-            font-family: 'Roboto Mono', monospace; 
-            font-size: 21px; /* Slightly larger to balance the Title Case */
-            font-weight: 700;
-            margin-bottom: 4px;
-            display: block;
-            /* text-transform: none; Removed the force-caps to allow Title Case */
-            letter-spacing: -0.5px; 
+        .team-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: var(--accent-glow);
         }
 
-        .role {
-            font-size: 11px;
+        .member-name {
+            font-weight: 900;
+            font-size: 24px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--sub-text);
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .member-role {
             font-weight: 700;
+            color: var(--accent-glow);
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: block;
         }
 
-        .indicator {
-            width: 10px;
-            height: 10px;
-            background-color: var(--btn-bg);
-            display: inline-block;
-            margin-right: 10px;
+        .member-bio {
+            line-height: 1.6;
+            color: var(--text-color);
+            font-size: 16px;
         }
 
-        .photo-box {
-            width: 90px;
-            height: 90px;
-            background-color: var(--bg-color);
-            border: 1.5px solid var(--btn-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .photo-box img {
-            width: 60%;
-            height: auto;
-            opacity: 0.3;
-            filter: grayscale(1);
+        .footer-note {
+            margin-top: 60px;
+            font-style: italic;
+            color: var(--sub-text);
+            font-size: 14px;
+            text-align: center;
         }
     </style>
-    
+</head>
+<body>
+
+    <div class="top-bar">
+        <a href="index.html" class="nav-item">← Return</a>
+    </div>
+
+    <div class="container">
+        <h1>the team.</h1>
+
+        <div class="team-card">
+            <span class="member-name">Lead Tech</span>
+            <span class="member-role">Operations & Strategy</span>
+            <p class="member-bio">
+                Focused on delivering structural solutions and technical precision for every project across the 870. 
+                From complex troubleshooting to the final aesthetic finish, we prioritize durability and honest craftsmanship.
+            </p>
+        </div>
+
+        <div class="team-card">
+            <span class="member-name">Project Support</span>
+            <span class="member-role">Communications & Logistics</span>
+            <p class="member-bio">
+                Managing the flow of project inquiries and ensuring the logistics of every service call are handled 
+                with efficiency. We keep the operation moving so the work stays on schedule.
+            </p>
+        </div>
+
+        <div class="footer-note">
+            Built for Arkansas. Serving the 870 with integrity.
+        </div>
+    </div>
+
     <script>
+        // Sync theme with the main page
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
         }
     </script>
-</head>
-<body>
-
-    <div class="top-bar">
-        <a href="index.html" class="nav-item">Return</a>
-    </div>
-
-    <div class="container">
-        <h1>Meet the Handyman's Team</h1>
-
-        <div class="team-stack">
-            <div class="member-row">
-                <div class="member-meta">
-                    <span class="name">Stacey</span> 
-                    <div style="display:flex; align-items:center;">
-                        <span class="indicator"></span>
-                        <span class="role">Lead Handyman</span>
-                    </div>
-                </div>
-                <div class="photo-box">
-                    <img src="https://www.svgrepo.com/show/452030/avatar-default.svg" alt="Profile">
-                </div>
-            </div>
-
-            <div class="member-row">
-                <div class="member-meta">
-                    <span class="name">Kalae'e</span>
-                    <div style="display:flex; align-items:center;">
-                        <span class="indicator"></span>
-                        <span class="role">Junior Handyman</span>
-                    </div>
-                </div>
-                <div class="photo-box">
-                    <img src="https://www.svgrepo.com/show/452030/avatar-default.svg" alt="Profile">
-                </div>
-            </div>
-
-            <div class="member-row">
-                <div class="member-meta">
-                    <span class="name">India</span>
-                    <div style="display:flex; align-items:center;">
-                        <span class="indicator"></span>
-                        <span class="role">Office Operations</span>
-                    </div>
-                </div>
-                <div class="photo-box">
-                    <img src="https://www.svgrepo.com/show/452030/avatar-default.svg" alt="Profile">
-                </div>
-            </div>
-        </div>
-    </div>
-
 </body>
 </html>
