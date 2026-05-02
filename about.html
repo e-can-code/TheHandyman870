@@ -4,19 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Team | the handyman 870.</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            /* MATCHING INDEX.HTML THEME */
             --bg-color: #f0ede4;      
             --text-color: #1a1c1e;    
             --sub-text: #6a727c;
             --btn-bg: #2b59c3;        
             --btn-border: #1a1c1e;    
-            --content-bg: #ffffff;
-            --shadow: 6px 6px 0px var(--btn-border);
+            --content-bg: #e6e2d6;    /* Matching deeper tint */
         }
 
         [data-theme="dark"] {
@@ -26,7 +23,6 @@
             --btn-bg: #3d71e9;        
             --btn-border: #000000;
             --content-bg: #1c1f23;
-            --shadow: 6px 6px 0px #000000;
         }
 
         body {
@@ -38,13 +34,40 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            transition: background-color 0.3s ease;
+        }
+
+        /* Top Bar - Exact mirror of home page */
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+
+        .nav-item {
+            background: var(--bg-color); /* Matches page bg */
+            border: 2px solid var(--btn-border);
+            color: var(--text-color);
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.1s;
+        }
+
+        .nav-item:hover {
+            background: var(--btn-border);
+            color: var(--bg-color);
         }
 
         .container {
             max-width: 600px;
             width: 100%;
-            padding: 80px 20px;
+            padding: 40px 20px;
         }
 
         h1 {
@@ -58,95 +81,58 @@
             display: inline-block;
         }
 
-        .team-stack {
-            width: 100%;
-            margin-bottom: 80px;
-        }
-
         .member-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 35px 0;
-            border-bottom: 1.5px solid var(--btn-border);
-        }
-
-        .member-row:first-child {
-            border-top: 1.5px solid var(--btn-border);
-        }
-
-        .member-meta {
-            flex: 1;
+            padding: 30px;
+            background-color: var(--content-bg); /* Use the new frame color */
+            border: 2px solid var(--btn-border);
+            margin-bottom: 20px;
+            box-shadow: 6px 6px 0px var(--btn-border);
         }
 
         .name {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 900;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             display: block;
             text-transform: lowercase;
         }
 
         .role {
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: var(--sub-text);
             font-weight: 700;
         }
 
-        /* Structured Photo Placeholder - Matching Button Aesthetic */
+        .indicator {
+            width: 10px;
+            height: 10px;
+            background-color: var(--btn-bg);
+            display: inline-block;
+            margin-right: 10px;
+        }
+
         .photo-box {
-            width: 110px;
-            height: 110px;
-            background-color: var(--content-bg);
-            border: 2.5px solid var(--btn-border);
+            width: 90px;
+            height: 90px;
+            background-color: var(--bg-color);
+            border: 1.5px solid var(--btn-border);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 900;
-            letter-spacing: 1px;
             text-transform: uppercase;
             color: var(--sub-text);
-            margin-left: 20px;
-            box-shadow: 4px 4px 0px var(--btn-border);
             overflow: hidden;
         }
-
-        /* Blue indicator to match home page buttons */
-        .indicator {
-            width: 12px;
-            height: 12px;
-            background-color: var(--btn-bg);
-            display: inline-block;
-            margin-right: 12px;
-        }
-
-        .back-nav {
-            text-decoration: none;
-            color: var(--text-color);
-            font-size: 12px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border: 2px solid var(--btn-border);
-            padding: 14px 28px;
-            transition: all 0.1s;
-            background: var(--content-bg);
-            box-shadow: var(--shadow);
-        }
-
-        .back-nav:active {
-            transform: translate(4px, 4px);
-            box-shadow: none;
-        }
-
-        /* Ensure the theme stays consistent when navigating */
     </style>
     
     <script>
-        // Apply theme immediately before body renders to prevent white flash
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
@@ -154,6 +140,10 @@
     </script>
 </head>
 <body>
+
+    <div class="top-bar">
+        <a href="index.html" class="nav-item">Return</a>
+    </div>
 
     <div class="container">
         <h1>Personnel Registry</h1>
@@ -167,9 +157,7 @@
                         <span class="role">Lead Handyman</span>
                     </div>
                 </div>
-                <div class="photo-box">
-                    <span>[PHOTO]</span>
-                </div>
+                <div class="photo-box"><span>[PHOTO]</span></div>
             </div>
 
             <div class="member-row">
@@ -180,9 +168,7 @@
                         <span class="role">Junior Handyman</span>
                     </div>
                 </div>
-                <div class="photo-box">
-                    <span>[PHOTO]</span>
-                </div>
+                <div class="photo-box"><span>[PHOTO]</span></div>
             </div>
 
             <div class="member-row">
@@ -193,14 +179,8 @@
                         <span class="role">Office Operations</span>
                     </div>
                 </div>
-                <div class="photo-box">
-                    <span>[PHOTO]</span>
-                </div>
+                <div class="photo-box"><span>[PHOTO]</span></div>
             </div>
-        </div>
-
-        <div style="text-align: left; margin-top: 40px;">
-            <a href="index.html" class="back-nav">Return to Base</a>
         </div>
     </div>
 
