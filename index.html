@@ -13,26 +13,27 @@
 
     <style>
         :root {
-            /* REFINED TECHNICAL LIGHT MODE */
-            --bg-color: #f0ede4;      /* Saturated Parchment - feels like heavy cardstock */
+            /* REFINED ARCHITECTURAL LIGHT */
+            --bg-color: #f0ede4;      
             --text-color: #1a1c1e;    
             --sub-text: #6a727c;
-            --btn-bg: #2b59c3;        /* Deep Cobalt Blue */
-            --btn-text: #ffffff;      /* White text for contrast on blue */
+            --btn-bg: #2b59c3;        
+            --btn-text: #ffffff;      
             --btn-border: #1a1c1e;    
             --content-bg: #ffffff;
+            --map-accent: #2d3748;    /* Muted Slate instead of bright blue */
             --shadow: 6px 6px 0px var(--btn-border);
         }
 
         [data-theme="dark"] {
-            /* ENGINEERED DARK MODE */
             --bg-color: #121416;      
             --text-color: #e3e6e9;
             --sub-text: #9ba3af;
-            --btn-bg: #3d71e9;        /* Brighter blue for dark mode visibility */
+            --btn-bg: #3d71e9;        
             --btn-text: #ffffff;
             --btn-border: #000000;
             --content-bg: #1c1f23;
+            --map-accent: #3d71e9;
             --shadow: 6px 6px 0px #000000;
         }
 
@@ -71,11 +72,6 @@
             transition: all 0.1s;
         }
 
-        .nav-item:hover {
-            background: var(--btn-border);
-            color: var(--bg-color);
-        }
-
         .container {
             text-align: center;
             margin-top: 60px;
@@ -108,7 +104,6 @@
             flex-wrap: wrap;
         }
 
-        /* Tactile Industrial Buttons */
         .action-btn {
             background-color: var(--btn-bg);
             border: 2.5px solid var(--btn-border);
@@ -120,7 +115,7 @@
             letter-spacing: 2px;
             cursor: pointer;
             box-shadow: var(--shadow);
-            transition: all 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+            transition: all 0.1s;
             text-decoration: none;
         }
 
@@ -157,22 +152,18 @@
             outline: none;
         }
 
-        .form-input:focus {
-            border-color: var(--btn-bg);
-        }
-
         #service-map {
             height: 400px;
             width: 100%;
             border: 1px solid var(--btn-border);
-            filter: grayscale(0.8) contrast(1.2) brightness(0.9); 
+            filter: grayscale(0.8) contrast(1.1) brightness(0.95); 
         }
 
         .section-header {
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 25px;
+            margin-bottom: 10px;
             font-size: 13px;
             display: flex;
             align-items: center;
@@ -183,8 +174,16 @@
             display: inline-block;
             width: 12px;
             height: 12px;
-            background: var(--btn-bg);
+            background: var(--map-accent); /* Muted indicator */
             margin-right: 10px;
+        }
+
+        .service-rhythm {
+            font-style: italic;
+            color: var(--sub-text);
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: block;
         }
 
     </style>
@@ -209,7 +208,7 @@
         <div id="phone-content" class="reveal-section">
             <div class="section-header">Direct Contact</div>
             <div style="font-size: 36px; font-weight: 900; letter-spacing: 1px;">(870) ###-####</div>
-            <p style="color: var(--sub-text); margin-top: 12px; font-size: 15px;">Official line for calls and project text messages.</p>
+            <p style="color: var(--sub-text); margin-top: 12px; font-size: 15px;">Available for calls and project text messages.</p>
         </div>
 
         <div id="message-content" class="reveal-section">
@@ -223,34 +222,35 @@
         </div>
 
         <div id="service-content" class="reveal-section">
-            <div class="section-header">Dispatch Coverage</div>
+            <div class="section-header">Service Area</div>
+            <span class="service-rhythm">From Little Rock to El Dorado; from Dierks to Pine Bluff</span>
             <div id="service-map"></div>
-            <p style="margin-top: 20px; font-size: 14px; color: var(--sub-text); line-height: 1.6;">Currently serving a 70-mile radius centered in South Central Arkansas.</p>
         </div>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Theme Management
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
-            document.getElementById('theme-toggle-btn').innerText = 'Mode';
         }
 
-        // Initialize Map
         var map = L.map('service-map', { zoomControl: false }).setView([34.2570, -92.4281], 7);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-        L.circle([34.2570, -92.4281], { 
-            color: '#2b59c3', 
-            fillColor: '#2b59c3', 
-            fillOpacity: 0.25, 
+        
+        // Dynamic color for the map circle based on theme
+        var circleColor = (savedTheme === 'dark') ? '#3d71e9' : '#2d3748';
+        var serviceCircle = L.circle([34.2570, -92.4281], { 
+            color: circleColor, 
+            fillColor: circleColor, 
+            fillOpacity: 0.2, 
             radius: 112654 
         }).addTo(map);
 
         function toggleTheme() {
             const doc = document.documentElement;
             const isDark = doc.getAttribute('data-theme') === 'dark';
+            const newCircleColor = isDark ? '#2d3748' : '#3d71e9';
             
             if (isDark) {
                 doc.removeAttribute('data-theme');
@@ -259,6 +259,7 @@
                 doc.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
             }
+            serviceCircle.setStyle({color: newCircleColor, fillColor: newCircleColor});
         }
 
         function revealContent(id) {
