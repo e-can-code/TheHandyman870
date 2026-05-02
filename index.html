@@ -13,19 +13,20 @@
 
     <style>
         :root {
-            /* REFINED ARCHITECTURAL LIGHT */
+            /* REFINED ARCHITECTURAL LIGHT (Blueprint/Parchment) */
             --bg-color: #f0ede4;      
             --text-color: #1a1c1e;    
             --sub-text: #6a727c;
             --btn-bg: #2b59c3;        
             --btn-text: #ffffff;      
             --btn-border: #1a1c1e;    
-            --content-bg: #ffffff;
-            --map-accent: #2d3748;    /* Muted Slate instead of bright blue */
+            --content-bg: #e6e2d6;    /* Deeper tint for the frames */
+            --map-accent: #2d3748;    /* Muted Slate */
             --shadow: 6px 6px 0px var(--btn-border);
         }
 
         [data-theme="dark"] {
+            /* ENGINEERED DARK MODE (Charcoal/Slate) */
             --bg-color: #121416;      
             --text-color: #e3e6e9;
             --sub-text: #9ba3af;
@@ -46,9 +47,10 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
+        /* Top Bar Navigation */
         .top-bar {
             width: 100%;
             display: flex;
@@ -70,6 +72,11 @@
             cursor: pointer;
             text-decoration: none;
             transition: all 0.1s;
+        }
+
+        .nav-item:hover {
+            background: var(--btn-border);
+            color: var(--bg-color);
         }
 
         .container {
@@ -96,6 +103,7 @@
             letter-spacing: 3px;
         }
 
+        /* Interaction Buttons */
         .buttons {
             display: flex;
             justify-content: center;
@@ -115,7 +123,7 @@
             letter-spacing: 2px;
             cursor: pointer;
             box-shadow: var(--shadow);
-            transition: all 0.1s;
+            transition: all 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
             text-decoration: none;
         }
 
@@ -124,6 +132,7 @@
             box-shadow: 2px 2px 0px var(--btn-border);
         }
 
+        /* Reveal Section Styling */
         .reveal-section {
             display: none;
             background-color: var(--content-bg);
@@ -137,6 +146,33 @@
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-header::before {
+            content: "";
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: var(--map-accent);
+            margin-right: 10px;
+        }
+
+        .service-rhythm {
+            font-style: italic;
+            color: var(--sub-text);
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: block;
         }
 
         .form-input {
@@ -155,35 +191,8 @@
         #service-map {
             height: 400px;
             width: 100%;
-            border: 1px solid var(--btn-border);
+            border: 1.5px solid var(--btn-border);
             filter: grayscale(0.8) contrast(1.1) brightness(0.95); 
-        }
-
-        .section-header {
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-        }
-
-        .section-header::before {
-            content: "";
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            background: var(--map-accent); /* Muted indicator */
-            margin-right: 10px;
-        }
-
-        .service-rhythm {
-            font-style: italic;
-            color: var(--sub-text);
-            font-size: 14px;
-            margin-bottom: 20px;
-            display: block;
         }
 
     </style>
@@ -208,7 +217,7 @@
         <div id="phone-content" class="reveal-section">
             <div class="section-header">Direct Contact</div>
             <div style="font-size: 36px; font-weight: 900; letter-spacing: 1px;">(870) ###-####</div>
-            <p style="color: var(--sub-text); margin-top: 12px; font-size: 15px;">Available for calls and project text messages.</p>
+            <p style="color: var(--sub-text); margin-top: 12px; font-size: 15px;">Available for direct calls and project text messages.</p>
         </div>
 
         <div id="message-content" class="reveal-section">
@@ -230,15 +239,16 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
+        // Theme Management
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
         }
 
+        // Map Initialization
         var map = L.map('service-map', { zoomControl: false }).setView([34.2570, -92.4281], 7);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
         
-        // Dynamic color for the map circle based on theme
         var circleColor = (savedTheme === 'dark') ? '#3d71e9' : '#2d3748';
         var serviceCircle = L.circle([34.2570, -92.4281], { 
             color: circleColor, 
