@@ -12,35 +12,37 @@
         }
     </script>
 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
     <style>
         html { scroll-behavior: smooth; }
 
         /* Modern, High-Trust Color Variables */
         :root {
-            --bg-color: #f4f6f8;       /* Soft off-white background */
-            --content-bg: #ffffff;     /* Pure white for cards/sections */
-            --text-color: #334155;     /* Dark slate for high readability */
-            --sub-text: #64748b;       /* Lighter slate for secondary text */
-            --primary-blue: #2563eb;   /* Deep, trustworthy professional blue */
-            --primary-hover: #1d4ed8;  /* Slightly darker blue for hovering */
-            --btn-text: #ffffff;       /* White text for buttons */
-            --border-color: #e2e8f0;   /* Very faint gray for subtle dividing lines */
+            --bg-color: #f4f6f8;       
+            --content-bg: #ffffff;     
+            --text-color: #334155;     
+            --sub-text: #64748b;       
+            --primary-blue: #2563eb;   
+            --primary-hover: #1d4ed8;  
+            --btn-text: #ffffff;       
+            --border-color: #e2e8f0;   
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
         [data-theme="dark"] {
-            --bg-color: #0f172a;       /* Deep slate instead of harsh pure black */
-            --content-bg: #1e293b;     /* Slightly lighter slate for cards */
-            --text-color: #f8fafc;     /* Off-white text to prevent eye strain */
+            --bg-color: #0f172a;       
+            --content-bg: #1e293b;     
+            --text-color: #f8fafc;     
             --sub-text: #94a3b8;       
-            --primary-blue: #3b82f6;   /* Brighter blue to pop against dark mode */
+            --primary-blue: #3b82f6;   
             --primary-hover: #60a5fa;  
             --btn-text: #ffffff;       
             --border-color: #334155;
             --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
         }
 
-        /* Global Styles with System Fonts */
+        /* Global Styles */
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -54,36 +56,33 @@
             min-height: 100vh;
         }
 
-        /* Top Bar */
         .top-bar {
             width: 100%;
             display: flex;
-            justify-content: flex-end; /* Change to space-between for about.html */
+            justify-content: flex-end;
             padding: 20px;
             box-sizing: border-box;
         }
 
-        .theme-toggle, .back-btn {
+        .theme-toggle {
             background: var(--content-bg);
             border: 1px solid var(--border-color);
             color: var(--text-color);
             font-size: 20px;
             padding: 8px 16px;
             cursor: pointer;
-            border-radius: 50px; /* Pill shape */
+            border-radius: 50px;
             box-shadow: var(--shadow);
             transition: transform 0.2s, box-shadow 0.2s;
-            text-decoration: none;
             display: inline-flex;
             align-items: center;
         }
 
-        .theme-toggle:hover, .back-btn:hover {
+        .theme-toggle:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.15);
         }
 
-        /* Main Content Container */
         .container {
             text-align: center;
             margin-top: 30px;
@@ -96,12 +95,12 @@
             font-size: 42px;
             font-weight: 800;
             margin-bottom: 5px;
-            letter-spacing: -0.5px; /* Tighter letter spacing looks more modern */
+            letter-spacing: -0.5px;
         }
 
         h2 {
             font-size: 24px;
-            color: var(--primary-blue); /* Highlighting the phone number */
+            color: var(--primary-blue);
             margin-top: 0;
             margin-bottom: 10px;
         }
@@ -113,7 +112,6 @@
             margin-bottom: 40px;
         }
 
-        /* Buttons Container */
         .buttons {
             display: flex;
             justify-content: center;
@@ -122,7 +120,6 @@
             margin-bottom: 40px;
         }
 
-        /* Modernized Buttons */
         .action-btn {
             background-color: var(--primary-blue);
             border: none;
@@ -131,7 +128,7 @@
             font-size: 18px;
             font-weight: 600;
             cursor: pointer;
-            border-radius: 8px; /* Softer corners */
+            border-radius: 8px;
             box-shadow: var(--shadow);
             transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
             text-decoration: none;
@@ -142,18 +139,17 @@
 
         .action-btn:hover {
             background-color: var(--primary-hover);
-            transform: translateY(-2px); /* Slight "lift" effect */
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3); /* Blue tinted shadow */
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
         }
 
-        /* Reveal & Permanent Sections (Card Styling) */
-        .reveal-section, .permanent-section, .team-card {
+        .reveal-section, .permanent-section {
             background-color: var(--content-bg);
             border: 1px solid var(--border-color);
             padding: 40px 30px;
-            border-radius: 16px; /* Smooth, modern corners */
+            border-radius: 16px;
             margin-bottom: 40px;
-            box-shadow: var(--shadow); /* App-like depth */
+            box-shadow: var(--shadow);
         }
 
         .reveal-section {
@@ -173,7 +169,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Specific Content Styles */
         .phone-display {
             font-size: 36px;
             font-weight: 800;
@@ -181,7 +176,6 @@
             letter-spacing: 1px;
         }
 
-        /* Modern Form Inputs */
         .contact-form {
             display: flex;
             flex-direction: column;
@@ -204,60 +198,18 @@
         .contact-form input:focus, .contact-form textarea:focus {
             border-color: var(--primary-blue);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); /* Focus ring */
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
         }
 
-        .map-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
+        /* NEW MAP STYLES */
+        #service-map {
+            height: 400px; 
+            width: 100%; 
+            border-radius: 8px; 
             border: 1px solid var(--border-color);
+            z-index: 1; /* Keeps map elements from overlapping your site */
         }
 
-        /* About Page Extras */
-        .about-text {
-            font-size: 18px;
-            line-height: 1.7;
-            margin-bottom: 50px;
-            color: var(--text-color);
-        }
-
-        .team-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .image-placeholder {
-            width: 150px;
-            height: 150px;
-            background-color: var(--bg-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            color: var(--sub-text);
-            font-weight: 600;
-            text-align: center;
-            padding: 10px;
-            box-sizing: border-box;
-            border: 2px dashed var(--border-color);
-        }
-
-        .team-card h4 {
-            margin: 0 0 5px 0;
-            font-size: 22px;
-            color: var(--text-color);
-        }
-
-        .team-card p {
-            margin: 0;
-            color: var(--sub-text);
-            font-size: 16px;
-            font-weight: 500;
-        }
     </style>
 </head>
 <body>
@@ -303,13 +255,45 @@
         <div id="service-content" class="permanent-section">
             <h3 style="margin-top: 0; margin-bottom: 15px; font-weight: bold; color: var(--text-color);">Our Service Area</h3>
             <p style="margin-bottom: 20px;">From Little Rock to El Dorado; from Dierks to Pine Bluff</p>
-            <img class="map-img" src="AR-counties-codes-2019_arebUsCourts_dot_gov.jpg" alt="Map of Arkansas Counties">
+            
+            <div id="service-map"></div>
         </div>
 
     </div>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
     <script>
-        // Updated Toggle: Now saves the preference to localStorage
+        // --- MAP CONFIGURATION ---
+        // 1. Find your latitude and longitude on Google Maps
+        // 2. Paste them here to set the center of the circle
+        var lat = 34.2570; // Currently set somewhere near Pine Bluff/Little Rock
+        var lng = -92.4281;
+
+        // 3. Set the radius in miles
+        var radiusInMiles = 70; 
+
+        // -------------------------
+
+        // Initialize the map
+        var map = L.map('service-map').setView([lat, lng], 7);
+
+        // Load the street map tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Convert miles to meters for the code, then draw the big blue circle
+        var radiusInMeters = radiusInMiles * 1609.34;
+        var serviceCircle = L.circle([lat, lng], {
+            color: '#2563eb',       // Blue outline
+            fillColor: '#3b82f6',   // Blue fill
+            fillOpacity: 0.3,       // How transparent the circle is
+            radius: radiusInMeters
+        }).addTo(map);
+
+        // Toggle Theme Logic
         function toggleTheme() {
             const body = document.documentElement;
             if (body.getAttribute('data-theme') === 'dark') {
@@ -321,16 +305,13 @@
             }
         }
 
+        // Reveal Content Logic
         function revealContent(sectionId) {
             const sections = ['phone-content', 'message-content'];
             sections.forEach(id => {
                 const element = document.getElementById(id);
                 if (id === sectionId) {
-                    if (element.style.display === 'block') {
-                        element.style.display = 'none';
-                    } else {
-                        element.style.display = 'block';
-                    }
+                    element.style.display = element.style.display === 'block' ? 'none' : 'block';
                 } else {
                     element.style.display = 'none';
                 }
