@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Team | the handyman 870.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -58,11 +59,6 @@
             transition: all 0.1s;
         }
 
-        .nav-item:hover {
-            background: var(--btn-border);
-            color: var(--bg-color);
-        }
-
         .container {
             max-width: 600px;
             width: 100%;
@@ -91,14 +87,15 @@
             box-shadow: 6px 6px 0px var(--btn-border);
         }
 
-        /* NEW NAME STYLE */
+        /* UPDATED NAME STYLE */
         .name {
-            font-size: 20px;
-            font-weight: 900;
+            font-family: 'Roboto Mono', monospace; /* Ensures the straight Okina */
+            font-size: 19px;
+            font-weight: 700;
             margin-bottom: 6px;
             display: block;
-            text-transform: uppercase; /* Forced Caps */
-            letter-spacing: 1px;        /* Tighter, professional feel */
+            text-transform: uppercase !important; /* Force KAI'ALOHA to be caps */
+            letter-spacing: 0px; 
         }
 
         .role {
@@ -129,9 +126,9 @@
         }
 
         .photo-box img {
-            width: 65%;
+            width: 60%;
             height: auto;
-            opacity: 0.4;
+            opacity: 0.3;
             filter: grayscale(1);
         }
     </style>
@@ -155,7 +152,7 @@
         <div class="team-stack">
             <div class="member-row">
                 <div class="member-meta">
-                    <span class="name">KAIʻALOHI</span> 
+                    <span class="name">Kai'aloha</span> 
                     <div style="display:flex; align-items:center;">
                         <span class="indicator"></span>
                         <span class="role">Lead Handyman</span>
@@ -190,193 +187,6 @@
                 <div class="photo-box">
                     <img src="https://www.svgrepo.com/show/452030/avatar-default.svg" alt="Profile">
                 </div>
-            </div>
-        </div>
-    </div>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>The Team | the handyman 870.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --bg-color: #f0ede4;      
-            --text-color: #1a1c1e;    
-            --sub-text: #6a727c;
-            --btn-bg: #2b59c3;        
-            --btn-border: #1a1c1e;    
-            --content-bg: #e6e2d6;    /* Matching deeper tint */
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #121416;      
-            --text-color: #e3e6e9;
-            --sub-text: #9ba3af;
-            --btn-bg: #3d71e9;        
-            --btn-border: #000000;
-            --content-bg: #1c1f23;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* Top Bar - Exact mirror of home page */
-        .top-bar {
-            width: 100%;
-            display: flex;
-            justify-content: flex-end;
-            padding: 24px;
-            box-sizing: border-box;
-        }
-
-        .nav-item {
-            background: var(--bg-color); /* Matches page bg */
-            border: 2px solid var(--btn-border);
-            color: var(--text-color);
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.1s;
-        }
-
-        .nav-item:hover {
-            background: var(--btn-border);
-            color: var(--bg-color);
-        }
-
-        .container {
-            max-width: 600px;
-            width: 100%;
-            padding: 40px 20px;
-        }
-
-        h1 {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 60px;
-            font-weight: 900;
-            border-bottom: 2.5px solid var(--btn-border);
-            padding-bottom: 15px;
-            display: inline-block;
-        }
-
-        .member-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 30px;
-            background-color: var(--content-bg); /* Use the new frame color */
-            border: 2px solid var(--btn-border);
-            margin-bottom: 20px;
-            box-shadow: 6px 6px 0px var(--btn-border);
-        }
-
-        .name {
-            font-size: 22px;
-            font-weight: 900;
-            margin-bottom: 4px;
-            display: block;
-            text-transform: lowercase;
-        }
-
-        .role {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--sub-text);
-            font-weight: 700;
-        }
-
-        .indicator {
-            width: 10px;
-            height: 10px;
-            background-color: var(--btn-bg);
-            display: inline-block;
-            margin-right: 10px;
-        }
-
-        .photo-box {
-            width: 90px;
-            height: 90px;
-            background-color: var(--bg-color);
-            border: 1.5px solid var(--btn-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 9px;
-            font-weight: 900;
-            text-transform: uppercase;
-            color: var(--sub-text);
-            overflow: hidden;
-        }
-    </style>
-    
-    <script>
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
-    </script>
-</head>
-<body>
-
-    <div class="top-bar">
-        <a href="index.html" class="nav-item">Return</a>
-    </div>
-
-    <div class="container">
-        <h1>Personnel Registry</h1>
-
-        <div class="team-stack">
-            <div class="member-row">
-                <div class="member-meta">
-                    <span class="name">Stacey</span>
-                    <div style="display:flex; align-items:center;">
-                        <span class="indicator"></span>
-                        <span class="role">Lead Handyman</span>
-                    </div>
-                </div>
-                <div class="photo-box"><span>[PHOTO]</span></div>
-            </div>
-
-            <div class="member-row">
-                <div class="member-meta">
-                    <span class="name">Kala'e</span>
-                    <div style="display:flex; align-items:center;">
-                        <span class="indicator"></span>
-                        <span class="role">Junior Handyman</span>
-                    </div>
-                </div>
-                <div class="photo-box"><span>[PHOTO]</span></div>
-            </div>
-
-            <div class="member-row">
-                <div class="member-meta">
-                    <span class="name">India</span>
-                    <div style="display:flex; align-items:center;">
-                        <span class="indicator"></span>
-                        <span class="role">Office Operations</span>
-                    </div>
-                </div>
-                <div class="photo-box"><span>[PHOTO]</span></div>
             </div>
         </div>
     </div>
