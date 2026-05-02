@@ -1,82 +1,235 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>The Handyman</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="styles.css">
-<style>
-.container{
-	display:grid;
-	align-content:center;
-}
-.container div.contact{
-	display:flex;
-	font-size: 18px
-}
-.container div.reveal{
-	display:flex;
-	font-size: 18px
-}
-.button {
-  background-color: DarkGray;
-  border: gray 1px solid;
-  border-radius: 4px;
-  color: black;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Handyman</title>
+    <style>
+        /* CSS Variables for Light and Dark Modes */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #4a86e8;
+            --sub-text: #8ab4f8;
+            --btn-bg: #cce5ff;
+            --btn-border: #4a86e8;
+            --content-bg: #f8f9fa;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #000000;
+            --text-color: #d3d3d3;
+            --sub-text: #a9a9a9;
+            --btn-bg: #404040;
+            --btn-border: #808080;
+            --content-bg: #222222;
+        }
+
+        /* Global Styles */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Top Bar for Theme Toggle */
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .theme-toggle {
+            background: transparent;
+            border: 2px solid var(--btn-border);
+            color: var(--text-color);
+            font-size: 24px;
+            padding: 5px 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Main Content Container */
+        .container {
+            text-align: center;
+            margin-top: 50px;
+            max-width: 800px;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 28px;
+            color: var(--sub-text);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 24px;
+            color: var(--sub-text);
+            font-weight: normal;
+            margin-bottom: 40px;
+        }
+
+        /* Buttons Container */
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .action-btn {
+            background-color: var(--btn-bg);
+            border: 2px solid var(--btn-border);
+            color: var(--text-color);
+            padding: 20px 40px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: opacity 0.2s;
+        }
+
+        .action-btn:hover {
+            opacity: 0.8;
+        }
+
+        /* Reveal Sections */
+        .reveal-section {
+            display: none;
+            background-color: var(--content-bg);
+            border: 1px solid var(--btn-border);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Specific Reveal Content Styles */
+        .phone-display {
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .contact-form input, .contact-form textarea {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid var(--btn-border);
+            border-radius: 4px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .map-img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--btn-border);
+        }
+
+    </style>
 </head>
-
 <body>
-<div class="container">
-<div class="title">
-<!-- Main Content -->
-<h1 style="color:white;text-align:center;"> The Handyman </h1>
-<h2 style="text-align:center;"> From Little Rock to El Dorado; from Dierks to Pine Bluff </h2>
-</div>
 
-<div class="map">
-<!-- Area of Operation Map -->
-<img src="AR-counties-codes-2019_arebUsCourts_dot_gov.jpg" alt="Arkansas Counties">
-</div>
+    <div class="top-bar">
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Light/Dark Mode">
+            ☀️ / 🌙
+        </button>
+    </div>
 
-<!-- Contact information -->
-<script>
-function unveilPhone(){
-	var elem = document.getElementById("phone");
-	if (elem.style.display === "none"){
-	elem.style.display = "block";
-	} else {
-		elem.style.display = "none";
-	}
-}
-function unveilEmail(){
-	var elem = document.getElementById("email");
-	if (elem.style.display === "none"){
-	elem.style.display = "block";
-	} else {
-		elem.style.display = "none";
-	}
-}
-</script>
+    <div class="container">
+        <h1>The Handyman 870</h1>
+        <h2>(###) ###-####</h2>
+        <h3>From place to place, place to place</h3>
 
-<div class="contact">
-<button onclick="unveilPhone()">Call or text The Handyman</button>
-<button onclick="unveilEmail()">Message us</button>
-</div>
-<div class="reveal">
-<div id="phone"> ###-#### </div>
-<div id="email"> Email box here - don't forget to leave us your contact information! </div>
-</div>
-</div>
+        <div class="buttons">
+            <button class="action-btn" onclick="revealContent('phone-content')">Phone</button>
+            <button class="action-btn" onclick="revealContent('message-content')">Message Us</button>
+            <button class="action-btn" onclick="revealContent('service-content')">Service Area</button>
+        </div>
+
+        <div id="phone-content" class="reveal-section">
+            <div class="phone-display">(###) ###-####</div>
+            <p>Call or text us anytime!</p>
+        </div>
+
+        <div id="message-content" class="reveal-section">
+            <div class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="5" placeholder="How can we help you?" required></textarea>
+                <button class="action-btn" style="padding: 10px;">Send Message</button>
+            </div>
+        </div>
+
+        <div id="service-content" class="reveal-section">
+            <p>From Little Rock to El Dorado; from Dierks to Pine Bluff</p>
+            <img class="map-img" src="AR-counties-codes-2019_arebUsCourts_dot_gov.jpg" alt="Map of Arkansas Counties">
+        </div>
+
+    </div>
+
+    <script>
+        // Toggle Light/Dark Mode
+        function toggleTheme() {
+            const body = document.documentElement;
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+            }
+        }
+
+        // Handle revealing content below buttons
+        function revealContent(sectionId) {
+            // List of all section IDs
+            const sections = ['phone-content', 'message-content', 'service-content'];
+            
+            sections.forEach(id => {
+                const element = document.getElementById(id);
+                // If the section clicked is already open, close it. Otherwise, open it.
+                if (id === sectionId) {
+                    if (element.style.display === 'block') {
+                        element.style.display = 'none';
+                    } else {
+                        element.style.display = 'block';
+                    }
+                } else {
+                    // Close all other sections
+                    element.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
-
-
