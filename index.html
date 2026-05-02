@@ -12,7 +12,6 @@
 
     <style>
         :root {
-            /* REFINED ARCHITECTURAL LIGHT */
             --bg-color: #f0ede4;      
             --text-color: #1a1c1e;    
             --sub-text: #6a727c;
@@ -25,7 +24,6 @@
         }
 
         [data-theme="dark"] {
-            /* ENGINEERED DARK MODE */
             --bg-color: #121416;      
             --text-color: #e3e6e9;
             --sub-text: #9ba3af;
@@ -82,7 +80,6 @@
 
         #theme-icon {
             font-size: 16px;
-            /* Ties the toggle visually to the action buttons */
             color: var(--accent-glow);
         }
 
@@ -245,39 +242,52 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
+        // Global Map Variables
+        let map;
+        let serviceCircle;
+
+        // Theme Initialization
         const savedTheme = localStorage.getItem('theme');
-        const icon = document.getElementById('theme-icon');
+        const themeIcon = document.getElementById('theme-icon');
+        
         if (savedTheme === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
-            icon.innerText = '🌙';
+            if(themeIcon) themeIcon.innerText = '🌙';
         }
 
-        var map = L.map('service-map', { zoomControl: false }).setView([34.2570, -92.4281], 7);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-        
-        var circleColor = (savedTheme === 'dark') ? '#3d71e9' : '#2b59c3';
-        var serviceCircle = L.circle([34.2570, -92.4281], { 
-            color: circleColor, 
-            fillColor: circleColor, 
-            fillOpacity: 0.2, 
-            radius: 112654 
-        }).addTo(map);
+        // Initialize Map
+        function initMap() {
+            map = L.map('service-map', { zoomControl: false }).setView([34.2570, -92.4281], 7);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+            
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const color = (currentTheme === 'dark') ? '#3d71e9' : '#2b59c3';
+            
+            serviceCircle = L.circle([34.2570, -92.4281], { 
+                color: color, 
+                fillColor: color, 
+                fillOpacity: 0.2, 
+                radius: 112654 
+            }).addTo(map);
+        }
+
+        initMap();
 
         function toggleTheme() {
             const doc = document.documentElement;
+            const icon = document.getElementById('theme-icon');
             const isDark = doc.getAttribute('data-theme') === 'dark';
-            const iconEl = document.getElementById('theme-icon');
             
             if (isDark) {
                 doc.removeAttribute('data-theme');
-                iconEl.innerText = '☀️';
+                if(icon) icon.innerText = '☀️';
                 localStorage.setItem('theme', 'light');
-                serviceCircle.setStyle({color: '#2b59c3', fillColor: '#2b59c3'});
+                if(serviceCircle) serviceCircle.setStyle({color: '#2b59c3', fillColor: '#2b59c3'});
             } else {
                 doc.setAttribute('data-theme', 'dark');
-                iconEl.innerText = '🌙';
+                if(icon) icon.innerText = '🌙';
                 localStorage.setItem('theme', 'dark');
-                serviceCircle.setStyle({color: '#3d71e9', fillColor: '#3d71e9'});
+                if(serviceCircle) serviceCircle.setStyle({color: '#3d71e9', fillColor: '#3d71e9'});
             }
         }
 
@@ -286,9 +296,16 @@
             ids.forEach(sectionId => {
                 const el = document.getElementById(sectionId);
                 if (sectionId === id) {
-                    el.style.display = (el.style.display === 'block') ? 'none' : 'block';
-                    if (id === 'service-content') setTimeout(() => map.invalidateSize(), 100);
+                    // Toggle the clicked section
+                    const isVisible = el.style.display === 'block';
+                    el.style.display = isVisible ? 'none' : 'block';
+                    
+                    // Refresh map if it's the map section
+                    if (id === 'service-content' && !isVisible) {
+                        setTimeout(() => map.invalidateSize(), 100);
+                    }
                 } else {
+                    // Hide all other sections
                     el.style.display = 'none';
                 }
             });
