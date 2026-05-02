@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About The Handyman</title>
+    <style>
+        /* Exact same CSS Variables as index.html */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #4a86e8;
+            --sub-text: #8ab4f8;
+            --btn-bg: #cce5ff;
+            --btn-border: #4a86e8;
+            --content-bg: #f8f9fa;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #000000;
+            --text-color: #d3d3d3;
+            --sub-text: #a9a9a9;
+            --btn-bg: #404040;
+            --btn-border: #808080;
+            --content-bg: #222222;
+        }
+
+        /* Global Styles */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Top Bar for Navigation & Theme Toggle */
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .theme-toggle, .back-btn {
+            background: transparent;
+            border: 2px solid var(--btn-border);
+            color: var(--text-color);
+            padding: 5px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 18px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        /* Main Content Container */
+        .container {
+            text-align: center;
+            margin-top: 20px;
+            max-width: 800px;
+            width: 100%;
+            padding: 0 20px 60px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 24px;
+            color: var(--sub-text);
+            font-weight: normal;
+            margin-bottom: 40px;
+        }
+
+        .about-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 50px;
+            color: var(--text-color);
+        }
+
+        /* Future Team Photo Grid */
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .team-card {
+            background-color: var(--content-bg);
+            border: 1px solid var(--btn-border);
+            border-radius: 8px;
+            padding: 20px;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* The placeholder box. Later, you'll replace this div with an <img> tag */
+        .image-placeholder {
+            width: 150px;
+            height: 150px;
+            background-color: var(--btn-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 2px dashed var(--btn-border);
+        }
+
+        .team-card h4 {
+            margin: 0 0 5px 0;
+            font-size: 20px;
+        }
+
+        .team-card p {
+            margin: 0;
+            color: var(--sub-text);
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <a href="index.html" class="back-btn">← Back to Home</a>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Light/Dark Mode">
+            ☀️ / 🌙
+        </button>
+    </div>
+
+    <div class="container">
+        <h1>About Us</h1>
+        <h3>Quality work, from place to place.</h3>
+
+        <div class="about-text">
+            <p>We are a dedicated team of professionals proudly serving the beautiful state of Arkansas.</p>
+            <p>Our crew is currently out in the field making sure things are built right and fixed fast. We look forward to uploading photos of our team here soon so you can meet the faces behind the hard work!</p>
+        </div>
+
+        <div class="team-grid">
+            
+            <div class="team-card">
+                <div class="image-placeholder">Photo Coming Soon</div>
+                <h4>Team Member</h4>
+                <p>Lead Handyman</p>
+            </div>
+
+            <div class="team-card">
+                <div class="image-placeholder">Photo Coming Soon</div>
+                <h4>Team Member</h4>
+                <p>Specialist</p>
+            </div>
+
+            <div class="team-card">
+                <div class="image-placeholder">Photo Coming Soon</div>
+                <h4>Team Member</h4>
+                <p>Specialist</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // Toggle Light/Dark Mode (Same as Home Page)
+        function toggleTheme() {
+            const body = document.documentElement;
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+            }
+        }
+    </script>
+</body>
+</html>
