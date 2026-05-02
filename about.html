@@ -2,6 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Team | the handyman 870.</title>
     
@@ -43,7 +52,6 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            transition: background-color 0.3s ease;
         }
 
         .top-bar {
@@ -149,20 +157,26 @@
         <h1>the team.</h1>
 
         <div class="team-card">
-            <span class="member-name">Lead Tech</span>
-            <span class="member-role">Operations & Strategy</span>
+            <span class="member-name">Lead Handyman</span>
+            <span class="member-role">Master Technical Operations</span>
             <p class="member-bio">
-                Focused on delivering structural solutions and technical precision for every project across the 870. 
-                From complex troubleshooting to the final aesthetic finish, we prioritize durability and honest craftsmanship.
+                Expert troubleshooting and structural execution. Leads the technical strategy for every site visit, ensuring heavy-duty repairs and architectural precision are met with the highest standards.
             </p>
         </div>
 
         <div class="team-card">
-            <span class="member-name">Project Support</span>
-            <span class="member-role">Communications & Logistics</span>
+            <span class="member-name">Junior Handyman</span>
+            <span class="member-role">Field Support & Implementation</span>
             <p class="member-bio">
-                Managing the flow of project inquiries and ensuring the logistics of every service call are handled 
-                with efficiency. We keep the operation moving so the work stays on schedule.
+                The boots on the ground for project staging and technical assistance. Handles high-efficiency implementation and keeps the workflow moving steadily across every project site.
+            </p>
+        </div>
+
+        <div class="team-card">
+            <span class="member-name">Office Operations</span>
+            <span class="member-role">Logistics & Strategy</span>
+            <p class="member-bio">
+                The neural center of the operation. Manages project intake, logistics scheduling, and client communications to ensure that technical work remains focused and on-schedule.
             </p>
         </div>
 
@@ -171,12 +185,5 @@
         </div>
     </div>
 
-    <script>
-        // Sync theme with the main page
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
-    </script>
 </body>
 </html>
