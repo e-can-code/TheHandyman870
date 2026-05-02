@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>The Handyman</title>
+    <title>The Handyman 870</title>
     
     <script>
         const savedTheme = localStorage.getItem('theme');
@@ -17,7 +17,7 @@
     <style>
         html { scroll-behavior: smooth; }
 
-        /* ORIGINAL CSS Variables */
+        /* ORIGINAL "Competent" Color Palette */
         :root {
             --bg-color: #ffffff;
             --text-color: #4a86e8;
@@ -50,39 +50,29 @@
             min-height: 100vh;
         }
 
-        /* Top Bar with About Us and Theme Toggle */
+        /* Top Bar - Clean Minimalism */
         .top-bar {
             width: 100%;
             display: flex;
             justify-content: flex-end;
-            align-items: center;
-            gap: 15px;
             padding: 20px;
             box-sizing: border-box;
         }
 
-        .top-btn {
+        .theme-toggle {
             background: transparent;
             border: 2px solid var(--btn-border);
             color: var(--text-color);
-            font-size: 18px;
-            padding: 5px 15px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            height: 40px; /* Keeps them the same height */
-            box-sizing: border-box;
-        }
-
-        .theme-toggle {
             font-size: 20px;
+            padding: 5px 12px;
+            cursor: pointer;
+            border-radius: 4px;
         }
 
         /* Main Content Container */
         .container {
             text-align: center;
-            margin-top: 50px;
+            margin-top: 40px;
             max-width: 800px;
             width: 100%;
             padding: 0 20px;
@@ -90,28 +80,40 @@
 
         h1 {
             font-size: 48px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
-        h2 {
-            font-size: 28px;
-            color: var(--sub-text);
-            margin-top: 0;
+        /* Hero Phone Number Link */
+        .hero-phone {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--text-color);
             margin-bottom: 10px;
+            transition: opacity 0.2s;
+        }
+        
+        .hero-phone:hover {
+            opacity: 0.7;
+        }
+
+        .hero-phone h2 {
+            font-size: 36px;
+            margin: 0;
+            font-weight: bold;
         }
 
         h3 {
-            font-size: 24px;
+            font-size: 20px;
             color: var(--sub-text);
             font-weight: normal;
             margin-bottom: 40px;
         }
 
-        /* Main Action Buttons Container */
+        /* The Balanced 3-Button Menu */
         .buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
             margin-bottom: 40px;
         }
@@ -120,8 +122,9 @@
             background-color: var(--btn-bg);
             border: 2px solid var(--btn-border);
             color: var(--text-color);
-            padding: 20px 40px;
-            font-size: 20px;
+            padding: 18px 30px;
+            font-size: 18px;
+            font-weight: bold;
             cursor: pointer;
             border-radius: 4px;
             transition: opacity 0.2s;
@@ -129,6 +132,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            min-width: 160px;
         }
 
         .action-btn:hover {
@@ -153,22 +157,16 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .phone-display {
-            font-size: 32px;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-
         .contact-form {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            max-width: 400px;
+            max-width: 450px;
             margin: 0 auto;
         }
 
         .contact-form input, .contact-form textarea {
-            padding: 10px;
+            padding: 12px;
             font-size: 16px;
             border: 1px solid var(--btn-border);
             border-radius: 4px;
@@ -176,12 +174,13 @@
             color: var(--text-color);
         }
 
-        /* NEW MAP STYLES */
+        /* Interactive Map Container */
         #service-map {
             height: 400px; 
             width: 100%; 
             border: 1px solid var(--btn-border);
             z-index: 1;
+            margin-top: 15px;
         }
 
     </style>
@@ -189,29 +188,28 @@
 <body>
 
     <div class="top-bar">
-        <a href="about.html" class="top-btn">About Us</a>
-        <button class="top-btn theme-toggle" onclick="toggleTheme()" aria-label="Toggle Light/Dark Mode">
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Light/Dark Mode">
             ☀️ / 🌙
         </button>
     </div>
 
     <div class="container">
         <h1>The Handyman 870</h1>
-        <h2 style="font-size: 20px; opacity: 0.8; font-weight: normal;">Direct: (870) ###-####</h2>
+        
+        <a href="tel:870#######" class="hero-phone">
+            <h2>(870) ###-####</h2>
+        </a>
+
         <h3>From place to place, place to place</h3>
 
         <div class="buttons">
-            <button class="action-btn" onclick="revealContent('phone-content')">Phone</button>
             <button class="action-btn" onclick="revealContent('message-content')">Message Us</button>
             <button class="action-btn" onclick="revealContent('service-content')">Service Area</button>
-        </div>
-
-        <div id="phone-content" class="reveal-section">
-            <div class="phone-display">(###) ###-####</div>
-            <p>Call or text us anytime!</p>
+            <a href="about.html" class="action-btn">About Us</a>
         </div>
 
         <div id="message-content" class="reveal-section">
+            <h3 style="margin-top: 0; font-weight: bold; color: var(--text-color);">Send a Request</h3>
             <form class="contact-form" action="https://forms.zohopublic.com/canadayechogm1/form/ContactUs/formperma/-q2roauxH3djGCkn4e2R9S6D01q8QhJzNczH5xCFTzQ/htmlRecords/submit" name="form" id="form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
                 <input type="hidden" name="zf_referrer_name" value="">
                 <input type="hidden" name="zf_redirect_url" value="">
@@ -219,18 +217,16 @@
 
                 <input type="text" name="Name_First" fieldType="7" maxlength="255" placeholder="First Name" required>
                 <input type="text" name="Name_Last" fieldType="7" maxlength="255" placeholder="Last Name" required>
-                
                 <input type="text" name="Email" checktype="c5" fieldType="9" maxlength="255" placeholder="Email" required>
-                <textarea name="MultiLine" checktype="c1" maxlength="65535" rows="5" placeholder="Leave us a few words" required></textarea>
+                <textarea name="MultiLine" checktype="c1" maxlength="65535" rows="5" placeholder="Tell us about your project..." required></textarea>
                 
-                <button type="submit" class="action-btn" style="padding: 10px;">Send Message</button>
+                <button type="submit" class="action-btn" style="padding: 10px; width: 100%;">Send Message</button>
             </form>
         </div>
 
         <div id="service-content" class="reveal-section">
-            <h3 style="margin-top: 0; margin-bottom: 15px; font-weight: bold; color: var(--text-color);">Our Service Area</h3>
-            <p style="margin-bottom: 20px;">From Little Rock to El Dorado; from Dierks to Pine Bluff</p>
-            
+            <h3 style="margin-top: 0; margin-bottom: 10px; font-weight: bold; color: var(--text-color);">Our Service Area</h3>
+            <p>From Little Rock to El Dorado; from Dierks to Pine Bluff</p>
             <div id="service-map"></div>
         </div>
 
@@ -253,8 +249,6 @@
         }).addTo(map);
 
         var radiusInMeters = radiusInMiles * 1609.34;
-        
-        // Back to the bright original blue
         var serviceCircle = L.circle([lat, lng], {
             color: '#4a86e8',       
             fillColor: '#8ab4f8',   
@@ -262,7 +256,7 @@
             radius: radiusInMeters
         }).addTo(map);
 
-        // Toggle Theme Logic
+        // Theme Persistence
         function toggleTheme() {
             const body = document.documentElement;
             if (body.getAttribute('data-theme') === 'dark') {
@@ -274,18 +268,17 @@
             }
         }
 
-        // Reveal Content Logic (Updated to fix hidden map sizing)
+        // Section Reveal Logic
         function revealContent(sectionId) {
-            const sections = ['phone-content', 'message-content', 'service-content'];
+            const sections = ['message-content', 'service-content'];
             sections.forEach(id => {
                 const element = document.getElementById(id);
                 if (id === sectionId) {
-                    // Toggle visibility
                     if (element.style.display === 'block') {
                         element.style.display = 'none';
                     } else {
                         element.style.display = 'block';
-                        // Give the map a split second to realize it is visible, then tell it to resize
+                        // Fix for Leaflet maps loading in hidden containers
                         if (id === 'service-content') {
                             setTimeout(() => { map.invalidateSize(); }, 100);
                         }
