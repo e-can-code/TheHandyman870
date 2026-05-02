@@ -12,6 +12,7 @@
 
     <style>
         :root {
+            /* REFINED ARCHITECTURAL LIGHT */
             --bg-color: #f0ede4;      
             --text-color: #1a1c1e;    
             --sub-text: #6a727c;
@@ -24,6 +25,7 @@
         }
 
         [data-theme="dark"] {
+            /* ENGINEERED DARK MODE */
             --bg-color: #121416;      
             --text-color: #e3e6e9;
             --sub-text: #9ba3af;
@@ -73,9 +75,14 @@
             transition: all 0.1s;
         }
 
-        /* Icon styling */
+        .nav-item:hover {
+            background: var(--btn-border);
+            color: var(--bg-color);
+        }
+
         #theme-icon {
             font-size: 16px;
+            /* Ties the toggle visually to the action buttons */
             color: var(--accent-glow);
         }
 
@@ -122,27 +129,12 @@
             letter-spacing: 2px;
             cursor: pointer;
             box-shadow: var(--shadow);
-            position: relative; /* For the badge */
             transition: all 0.1s;
         }
 
         .action-btn:active {
             transform: translate(4px, 4px);
             box-shadow: 2px 2px 0px var(--btn-border);
-        }
-
-        /* Small badge to draw the eye to the map feature */
-        .badge {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: var(--text-color);
-            color: var(--bg-color);
-            font-size: 9px;
-            padding: 4px 8px;
-            border: 1.5px solid var(--btn-border);
-            letter-spacing: 1px;
-            font-weight: 900;
         }
 
         .reveal-section {
@@ -225,10 +217,7 @@
         <div class="buttons">
             <button class="action-btn" onclick="revealContent('phone-content')">Phone</button>
             <button class="action-btn" onclick="revealContent('message-content')">Inquiry</button>
-            <button class="action-btn" onclick="revealContent('service-content')">
-                Service Area
-                <span class="badge">LIVE</span>
-            </button>
+            <button class="action-btn" onclick="revealContent('service-content')">Service Area</button>
         </div>
 
         <div id="phone-content" class="reveal-section">
@@ -277,16 +266,16 @@
         function toggleTheme() {
             const doc = document.documentElement;
             const isDark = doc.getAttribute('data-theme') === 'dark';
-            const icon = document.getElementById('theme-icon');
+            const iconEl = document.getElementById('theme-icon');
             
             if (isDark) {
                 doc.removeAttribute('data-theme');
-                icon.innerText = '☀️';
+                iconEl.innerText = '☀️';
                 localStorage.setItem('theme', 'light');
                 serviceCircle.setStyle({color: '#2b59c3', fillColor: '#2b59c3'});
             } else {
                 doc.setAttribute('data-theme', 'dark');
-                icon.innerText = '🌙';
+                iconEl.innerText = '🌙';
                 localStorage.setItem('theme', 'dark');
                 serviceCircle.setStyle({color: '#3d71e9', fillColor: '#3d71e9'});
             }
