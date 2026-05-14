@@ -9,7 +9,7 @@
 A high-performance, responsive landing page built for a local service business. This project demonstrates the ability to translate business requirements into a functional, conversion-focused web product using a modern, "brutalist-inspired" design.
 
 ## 🚀 Staging Link
-[View the Work-in-Progress Site](https://your-github-link-here.com)
+[View the Work-in-Progress Site]([https://your-github-link-here.com](https://e-can-code.github.io/TheHandyman870/))
 
 ---
 
