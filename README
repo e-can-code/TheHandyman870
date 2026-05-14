@@ -1,4 +1,4 @@
-#🛠️ Arkansas Handyman Service Website
+# 🛠️ Arkansas Handyman Service Website
 
 
 ## Status: 🏗️ In Active Development (Staging Phase)
@@ -7,10 +7,10 @@ Note: This project is currently in the staging phase. UI/UX patterns and technic
 
 A high-performance, responsive landing page built for a local service business. This project demonstrates the ability to translate business requirements into a functional, conversion-focused web product using a modern, "brutalist-inspired" design.
 
-## 🚀 Staging Link
+##  🚀 Staging Link
 
 View the Work-in-Progress Site
-###💡 Key Features
+### 💡 Key Features
 
     Dynamic Theme Engine: Custom-coded dark/light mode toggle with persistence via localStorage to ensure user preferences are saved across sessions.
 
@@ -22,7 +22,7 @@ View the Work-in-Progress Site
 
     Fluid Typography: Uses CSS clamp() functions and relative units for a consistent reading experience across all screen sizes.
 
-## 🛠️ Tech Stack
+##  🛠️ Tech Stack
 Frontend Architecture
 
     HTML5: Semantic structure with critical scripts placed in the <head> to prevent Flash of Unstyled Content (FOUC).
@@ -41,7 +41,7 @@ Geospatial & Integrations
 
     Formspree: Serverless API endpoint for handling POST requests and email automation.
 
-## 📋 Technical Highlights
+##  📋 Technical Highlights
 
     Performance: Lightweight codebase with no framework overhead, resulting in near-instant load times and high Core Web Vitals scores.
 
@@ -49,7 +49,7 @@ Geospatial & Integrations
 
     Asset Management: Currently utilizing optimized placeholder assets to establish layout and UI flow prior to final content integration.
 
-## 🗺️ Project Roadmap
+##  🗺️ Project Roadmap
 
     [x] Responsive UI/UX Design & Theming
 
