@@ -1,0 +1,4 @@
+- Add previous works as a fourth button
+- Center buttons
+- Fix Kala'e's photo name to match
+- Adjust text (not "inquiry" and not "Leave us a line" or w/e)
