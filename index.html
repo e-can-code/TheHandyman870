@@ -1,4 +1,15 @@
+Ah, I see exactly what happened. The buttons were technically in the same container in the code, but because of the CSS padding and the `flex-wrap: wrap;` property, they were running out of room on the screen and physically stacking onto a second row.
 
+To force them into a single, continuous row, I have made the following CSS adjustments:
+
+* Changed `.buttons` to `flex-wrap: nowrap;` so they are not allowed to drop to a second line.
+* Added `white-space: nowrap;` to the `.action-btn` class so the text inside the buttons doesn't break into multiple lines.
+* Slightly reduced the padding, font size, and gap between the buttons so they comfortably fit side-by-side on standard screens.
+* Added a subtle `overflow-x: auto;` to the `.buttons` container. This ensures that if someone views the site on an extremely narrow mobile screen, they can just swipe the row of buttons horizontally rather than the layout breaking.
+
+Here is your updated, single-row code:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,6 +104,7 @@
             max-width: 800px;
             width: 100%;
             padding: 0 20px;
+            box-sizing: border-box;
         }
 
         h1 {
@@ -111,29 +123,37 @@
             letter-spacing: 3px;
         }
 
+        /* Updated to force a single row */
         .buttons {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
+            gap: 15px; /* Slightly reduced gap */
             margin: 60px auto;
-            flex-wrap: wrap;
-            max-width: 700px; 
+            flex-wrap: nowrap; /* Forces a single line */
+            width: 100%;
+            max-width: 800px;
+            overflow-x: auto; /* Allows swiping on very small screens */
+            padding-bottom: 10px; /* Space for the shadow */
         }
+
+        /* Hide scrollbar for the button row on mobile */
+        .buttons::-webkit-scrollbar { display: none; }
 
         .action-btn {
             background-color: var(--btn-bg);
             border: 2.5px solid var(--btn-border);
             color: var(--btn-text);
-            padding: 22px 40px;
-            font-size: 15px;
+            padding: 18px 24px; /* Reduced padding to fit 4 buttons */
+            font-size: 13px; /* Slightly smaller text */
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             cursor: pointer;
             box-shadow: var(--shadow);
             transition: all 0.1s;
-            flex: 1 1 auto;
+            flex: 1; /* Makes them share space evenly */
+            white-space: nowrap; /* Keeps button text on one line */
         }
 
         .action-btn:active {
@@ -313,7 +333,7 @@
                 <input class="form-input" name="Email" type="email" placeholder="EMAIL" required>
                 <input type="text" name="_gotcha" style="display:none">
                 <textarea class="form-input" name="Message" rows="5" placeholder="Leave us a few words..."></textarea>
-                <button type="submit" class="action-btn" style="width: 100%; box-shadow: none;">Send Request</button>
+                <button type="submit" class="action-btn" style="width: 100%; box-shadow: none; white-space: normal;">Send Request</button>
             </form>
         </div>
 
@@ -365,7 +385,6 @@
         let map;
         let serviceCircle;
 
-        // Gallery scroll logic
         function scrollGallery(direction) {
             const slider = document.getElementById('main-slider');
             const scrollAmount = slider.clientWidth * 0.85 + 20; 
@@ -409,7 +428,6 @@
         }
 
         function revealContent(id) {
-            // Updated array with the 4 section IDs
             const ids = ['phone-content', 'message-content', 'service-area', 'work-content'];
             
             ids.forEach(sectionId => {
@@ -429,3 +447,5 @@
     </script>
 </body>
 </html>
+
+```
