@@ -1,3 +1,10 @@
+That makes complete sense. Consolidating the sections prevents the buttons from wrapping onto a second line on smaller screens, keeping the design clean and straightforward.
+
+To do this, I merged the **Common Services** section back underneath the **Completed Work** gallery inside a single `reveal-section` div. I also updated your navigation buttons so there are only four, ensuring they stay on a single line, and updated the JavaScript array so the toggle logic still works perfectly.
+
+Here is your updated code:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -110,7 +117,6 @@
             letter-spacing: 3px;
         }
 
-        /* Adjusted for better centering */
         .buttons {
             display: flex;
             justify-content: center;
@@ -133,7 +139,7 @@
             cursor: pointer;
             box-shadow: var(--shadow);
             transition: all 0.1s;
-            flex: 1 1 auto; /* Allows buttons to size nicely when wrapped */
+            flex: 1 1 auto;
         }
 
         .action-btn:active {
@@ -215,7 +221,7 @@
         .work-card {
             flex: 0 0 85%;
             aspect-ratio: 16/9;
-            background: var(--bg-color); /* Adjusted for contrast inside reveal block */
+            background: var(--bg-color);
             border: 2px solid var(--btn-border);
             scroll-snap-align: center;
             overflow: hidden;
@@ -233,6 +239,9 @@
         /* COMMON SERVICES LIST */
         .scope-section {
             text-align: left;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid var(--btn-border);
         }
 
         .scope-list {
@@ -291,8 +300,7 @@
             <button class="action-btn" onclick="revealContent('phone-content')">Phone</button>
             <button class="action-btn" onclick="revealContent('message-content')">Inquiry</button>
             <button class="action-btn" onclick="revealContent('service-area')">Area</button>
-            <button class="action-btn" onclick="revealContent('work-content')">Work</button>
-            <button class="action-btn" onclick="revealContent('services-content')">Services</button>
+            <button class="action-btn" onclick="revealContent('work-content')">Work & Services</button>
         </div>
 
         <div id="phone-content" class="reveal-section">
@@ -339,9 +347,7 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div id="services-content" class="reveal-section">
             <div class="scope-section">
                 <div class="section-header">Common Services</div>
                 <ul class="scope-list">
@@ -409,8 +415,8 @@
         }
 
         function revealContent(id) {
-            // Updated array with the new IDs
-            const ids = ['phone-content', 'message-content', 'service-area', 'work-content', 'services-content'];
+            // Updated array with the 4 section IDs
+            const ids = ['phone-content', 'message-content', 'service-area', 'work-content'];
             
             ids.forEach(sectionId => {
                 const el = document.getElementById(sectionId);
@@ -429,3 +435,5 @@
     </script>
 </body>
 </html>
+
+```
