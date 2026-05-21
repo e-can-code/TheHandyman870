@@ -1,15 +1,4 @@
-Ah, I see exactly what happened. The buttons were technically in the same container in the code, but because of the CSS padding and the `flex-wrap: wrap;` property, they were running out of room on the screen and physically stacking onto a second row.
 
-To force them into a single, continuous row, I have made the following CSS adjustments:
-
-* Changed `.buttons` to `flex-wrap: nowrap;` so they are not allowed to drop to a second line.
-* Added `white-space: nowrap;` to the `.action-btn` class so the text inside the buttons doesn't break into multiple lines.
-* Slightly reduced the padding, font size, and gap between the buttons so they comfortably fit side-by-side on standard screens.
-* Added a subtle `overflow-x: auto;` to the `.buttons` container. This ensures that if someone views the site on an extremely narrow mobile screen, they can just swipe the row of buttons horizontally rather than the layout breaking.
-
-Here is your updated, single-row code:
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -447,5 +436,3 @@ Here is your updated, single-row code:
     </script>
 </body>
 </html>
-
-```
